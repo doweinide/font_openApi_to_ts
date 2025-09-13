@@ -1,0 +1,225 @@
+@import 'https://zan1000-resources.oss-cn-hangzhou.aliyuncs.com/assets/fonts/font-family.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply rounded-lg px-4 py-2 text-white transition-colors duration-200;
+  }
+  .btn-primary {
+    @apply bg-blue-500 hover:bg-blue-600;
+  }
+  .btn-success {
+    @apply bg-green-500 hover:bg-green-600;
+  }
+  .btn-warning {
+    @apply bg-yellow-500 hover:bg-yellow-600;
+  }
+  .btn-danger {
+    @apply bg-red-500 hover:bg-red-600;
+  }
+  .input {
+    @apply w-full rounded-lg border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500;
+  }
+  .card {
+    @apply rounded-lg bg-white p-6 shadow-md;
+  }
+}
+
+#app {
+}
+
+@font-face {
+  font-family: 'din-m-s';
+  src: url('./font/DINMITTELSCHRIFT.OTF');
+}
+.din-m-s {
+  font-family: 'din-m-s', sans-serif;
+}
+.font-al-thin {
+  font-family: 'albb-35-thin', sans-serif;
+}
+.font-al-light {
+  font-family: 'albb-45-light', sans-serif;
+}
+.font-al-regular {
+  font-family: 'albb-55-regular', sans-serif;
+}
+.font-al-regular-l {
+  font-family: 'albb-55-regular-l', sans-serif;
+}
+.font-al-medium {
+  font-family: 'albb-65-medium', sans-serif;
+}
+.font-al-semibold {
+  font-family: 'albb-75-semibold', sans-serif;
+}
+.font-al-bold {
+  font-family: 'albb-85-bold', sans-serif;
+}
+.font-al-extra-bold {
+  font-family: 'albb-95-extra-bold', sans-serif;
+}
+.font-al-heavy {
+  font-family: 'albb-105-heavy', sans-serif;
+}
+.font-al-black {
+  font-family: 'albb-115-black', sans-serif;
+}
+.font-fz-zy {
+  font-family: 'fzzy-m05s', sans-serif;
+}
+.font-ys {
+  font-family: 'ys', sans-serif;
+}
+
+.font-bd-zy {
+  font-family: 'bdzy', sans-serif;
+}
+
+.font-digital {
+  font-family: 'digital', sans-serif;
+}
+
+.font-din {
+  font-family: 'din', sans-serif;
+}
+
+.font-dy {
+  font-family: 'dy', sans-serif;
+}
+
+.font-fashion {
+  font-family: 'fashion', sans-serif;
+}
+
+.font-hy-xt {
+  font-family: 'hyxt', sans-serif;
+}
+
+.font-oppo-b {
+  font-family: 'oppo-b', sans-serif;
+}
+
+.font-oppo-h {
+  font-family: 'oppo-h', sans-serif;
+}
+
+.font-oppo-m {
+  font-family: 'oppo-m', sans-serif;
+}
+
+.font-oppo-r {
+  font-family: 'oppo-r', sans-serif;
+}
+
+.font-pm-zd {
+  font-family: 'pmzd', sans-serif;
+}
+
+.font-sfu {
+  font-family: 'sfu', sans-serif;
+}
+
+.font-shs-bold {
+  font-family: 'shs-bold', sans-serif;
+}
+
+.font-shs-el {
+  font-family: 'shs-el', sans-serif;
+}
+
+.font-shs-heavy {
+  font-family: 'shs-heavy', sans-serif;
+}
+
+.font-shs-medium {
+  font-family: 'shs-medium', sans-serif;
+}
+
+.font-shs-normal {
+  font-family: 'shs-normal', sans-serif;
+}
+
+.font-shs-regular {
+  font-family: 'shs-regular', sans-serif;
+}
+.font-ssc-black {
+  font-family: 'ssc-black', sans-serif;
+}
+.font-ssc-bold {
+  font-family: 'ssc-bold', sans-serif;
+}
+.font-ssc-light {
+  font-family: 'ssc-light', sans-serif;
+}
+.font-ssc-medium {
+  font-family: 'ssc-medium', sans-serif;
+}
+.font-ssc-regular {
+  font-family: 'ssc-regular', sans-serif;
+}
+.font-ssc-thin {
+  font-family: 'ssc-thin', sans-serif;
+}
+.font-rc-bold {
+  font-family: 'rc-bold', sans-serif;
+}
+.font-rc-bold-t {
+  font-family: 'rc-boldt', sans-serif;
+}
+.font-rc-lta {
+  font-family: 'rc-ltalic', sans-serif;
+}
+.font-rc-light {
+  font-family: 'rc-light', sans-serif;
+}
+.font-rc-light-t {
+  font-family: 'rc-lightt', sans-serif;
+}
+.font-rc-regular {
+  font-family: 'rc-regular', sans-serif;
+}
+.font-pf-regular {
+  font-family: 'pf-regular', sans-serif;
+}
+.font-ms-yh {
+  font-family: 'chinese-msyh', sans-serif;
+}
+.font-zz-gf {
+  font-family: 'zzgf', sans-serif;
+}
+/* 隐藏滚动条 */
+/* Webkit浏览器 (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+/* Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* 通用样式 - 隐藏滚动条但保持滚动功能 */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari and Opera */
+}
