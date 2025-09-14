@@ -23,7 +23,7 @@
               {{ $t('generate.title') }}
             </h1>
           </div>
-          
+
           <!-- 语言切换器 -->
           <div class="flex items-center space-x-4">
             <LanguageSwitcher class="w-32" size="small" />
@@ -158,28 +158,26 @@
 <script setup lang="ts">
   import {
     ArrowLeft,
-    Download,
     CopyDocument,
-    Folder,
     Document,
+    Download,
+    Folder,
   } from '@element-plus/icons-vue'
   import { ElMessage } from 'element-plus'
   import JSZip from 'jszip'
   import * as monaco from 'monaco-editor'
-
   // 配置 Monaco Editor workers
   import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
   import cssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker'
   import htmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker'
   import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker'
   import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
-  import { ref, reactive, onMounted, nextTick, watch } from 'vue'
-  import { useRouter } from 'vue-router'
+  import { nextTick, onMounted, ref, watch } from 'vue'
   import { useI18n } from 'vue-i18n'
+  import { useRouter } from 'vue-router'
 
-  import type { GeneratedFile, FileTreeNode } from '@/types/openapi'
-  import { LOCALE_OPTIONS, setLocale, getCurrentLocale } from '@/locales'
   import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
+  import type { FileTreeNode, GeneratedFile } from '@/types/openapi'
 
   // 设置 Monaco Editor 环境
   self.MonacoEnvironment = {

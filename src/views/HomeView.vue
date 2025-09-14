@@ -7,7 +7,7 @@
       <div class="mb-6 flex justify-end">
         <LanguageSwitcher class="w-40" size="small" />
       </div>
-      
+
       <!-- 页面标题 -->
       <div class="mb-12 text-center">
         <h1
@@ -31,7 +31,9 @@
                 class="-mx-6 -mt-6 mb-6 flex items-center bg-gradient-to-r from-blue-500 to-indigo-500 px-6 py-4 text-white"
               >
                 <el-icon class="mr-3 text-xl"><Upload /></el-icon>
-                <span class="text-xl font-semibold">{{ $t('generate.inputLabel') }}</span>
+                <span class="text-xl font-semibold">{{
+                  $t('generate.inputLabel')
+                }}</span>
               </div>
             </template>
 
@@ -53,7 +55,8 @@
                       <upload-filled />
                     </el-icon>
                     <div class="el-upload__text text-lg">
-                      {{ $t('generate.uploadArea.dragText') }} <em>{{ $t('generate.uploadArea.clickText') }}</em>
+                      {{ $t('generate.uploadArea.dragText') }}
+                      <em>{{ $t('generate.uploadArea.clickText') }}</em>
                     </div>
                     <div class="el-upload__tip mt-2 text-sm text-gray-500">
                       {{ $t('generate.uploadArea.tip') }}
@@ -97,7 +100,9 @@
                         ><InfoFilled
                       /></el-icon>
                       <div class="text-sm text-blue-700">
-                        <p class="mb-1 font-medium">{{ $t('generate.urlInput.corsHelp.title') }}</p>
+                        <p class="mb-1 font-medium">
+                          {{ $t('generate.urlInput.corsHelp.title') }}
+                        </p>
                         <p class="mb-2">
                           {{ $t('generate.urlInput.corsHelp.description') }}
                         </p>
@@ -145,37 +150,49 @@
             <!-- 文档预览 -->
             <div v-if="parsedDoc" class="mt-6">
               <el-divider content-position="left">
-                <span class="text-sm font-medium text-slate-700">{{ $t('generate.docInfo.title') }}</span>
+                <span class="text-sm font-medium text-slate-700">{{
+                  $t('generate.docInfo.title')
+                }}</span>
               </el-divider>
               <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
                 <div class="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
                   <div>
-                    <span class="font-medium text-slate-700">{{ $t('generate.docInfo.apiTitle') }}:</span>
+                    <span class="font-medium text-slate-700"
+                      >{{ $t('generate.docInfo.apiTitle') }}:</span
+                    >
                     <span class="ml-2 text-slate-600">{{
                       parsedDoc.info.title
                     }}</span>
                   </div>
                   <div>
-                    <span class="font-medium text-slate-700">{{ $t('generate.docInfo.version') }}:</span>
+                    <span class="font-medium text-slate-700"
+                      >{{ $t('generate.docInfo.version') }}:</span
+                    >
                     <span class="ml-2 text-slate-600">{{
                       parsedDoc.info.version
                     }}</span>
                   </div>
                   <div>
-                    <span class="font-medium text-slate-700">{{ $t('generate.docInfo.pathCount') }}:</span>
+                    <span class="font-medium text-slate-700"
+                      >{{ $t('generate.docInfo.pathCount') }}:</span
+                    >
                     <span class="ml-2 text-slate-600">{{
                       getPathCount()
                     }}</span>
                   </div>
                   <div>
-                    <span class="font-medium text-slate-700">{{ $t('generate.docInfo.tagCount') }}:</span>
+                    <span class="font-medium text-slate-700"
+                      >{{ $t('generate.docInfo.tagCount') }}:</span
+                    >
                     <span class="ml-2 text-slate-600">{{
                       parsedDoc.tags?.length || 0
                     }}</span>
                   </div>
                 </div>
                 <div v-if="parsedDoc.info.description" class="mt-3">
-                  <span class="font-medium text-slate-700">{{ $t('generate.docInfo.description') }}:</span>
+                  <span class="font-medium text-slate-700"
+                    >{{ $t('generate.docInfo.description') }}:</span
+                  >
                   <p class="mt-1 text-slate-600">
                     {{ parsedDoc.info.description }}
                   </p>
@@ -193,7 +210,9 @@
                 class="-mx-6 -mt-6 mb-6 flex items-center bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-4 text-white"
               >
                 <el-icon class="mr-3 text-xl"><View /></el-icon>
-                <span class="text-xl font-semibold">{{ $t('generate.preview.title') }}</span>
+                <span class="text-xl font-semibold">{{
+                  $t('generate.preview.title')
+                }}</span>
               </div>
             </template>
 
@@ -315,7 +334,9 @@
                 class="-mx-6 -mt-6 flex items-center bg-gradient-to-r from-indigo-500 to-purple-500 px-6 py-4 text-white"
               >
                 <el-icon class="mr-3 text-xl"><Setting /></el-icon>
-                <span class="text-xl font-semibold">{{ $t('generate.config.title') }}</span>
+                <span class="text-xl font-semibold">{{
+                  $t('generate.config.title')
+                }}</span>
               </div>
             </template>
 
@@ -374,52 +395,62 @@
 
               <!-- 文件结构配置 -->
               <el-divider content-position="left">
-                <span class="text-sm text-slate-700">{{ $t('generate.config.fileStructure') }}</span>
+                <span class="text-sm text-slate-700">{{
+                  $t('generate.config.fileStructure')
+                }}</span>
               </el-divider>
 
               <el-form-item>
-                <el-checkbox v-model="config.separateTypes"
-                  >{{ $t('generate.config.separateTypes') }}</el-checkbox
-                >
+                <el-checkbox v-model="config.separateTypes">{{
+                  $t('generate.config.separateTypes')
+                }}</el-checkbox>
               </el-form-item>
               <el-form-item>
-                <el-checkbox v-model="config.generateIndex"
-                  >{{ $t('generate.config.generateIndex') }}</el-checkbox
-                >
+                <el-checkbox v-model="config.generateIndex">{{
+                  $t('generate.config.generateIndex')
+                }}</el-checkbox>
               </el-form-item>
               <el-form-item>
-                <el-checkbox v-model="config.generateUtils"
-                  >{{ $t('generate.config.generateUtils') }}</el-checkbox
-                >
+                <el-checkbox v-model="config.generateUtils">{{
+                  $t('generate.config.generateUtils')
+                }}</el-checkbox>
               </el-form-item>
 
               <!-- 代码风格配置 -->
               <el-divider content-position="left">
-                <span class="text-sm text-slate-700">{{ $t('generate.config.codeStyle') }}</span>
+                <span class="text-sm text-slate-700">{{
+                  $t('generate.config.codeStyle')
+                }}</span>
               </el-divider>
 
               <el-form-item>
-                <el-checkbox v-model="config.useAsync"
-                  >{{ $t('generate.config.useAsync') }}</el-checkbox
-                >
+                <el-checkbox v-model="config.useAsync">{{
+                  $t('generate.config.useAsync')
+                }}</el-checkbox>
               </el-form-item>
               <el-form-item>
-                <el-checkbox v-model="config.includeComments"
-                  >{{ $t('generate.config.includeComments') }}</el-checkbox
-                >
+                <el-checkbox v-model="config.includeComments">{{
+                  $t('generate.config.includeComments')
+                }}</el-checkbox>
               </el-form-item>
 
               <el-form-item :label="$t('generate.config.exportStyle')">
                 <el-radio-group v-model="config.exportStyle" class="w-full">
-                  <el-radio value="named">{{ $t('generate.config.namedExport') }}</el-radio>
-                  <el-radio value="default">{{ $t('generate.config.defaultExport') }}</el-radio>
+                  <el-radio value="named">{{
+                    $t('generate.config.namedExport')
+                  }}</el-radio>
+                  <el-radio value="default">{{
+                    $t('generate.config.defaultExport')
+                  }}</el-radio>
                 </el-radio-group>
               </el-form-item>
             </el-form>
 
             <!-- 缓存管理 -->
             <el-divider content-position="left">
-              <span class="text-sm text-slate-700">{{ $t('generate.config.cacheManagement') }}</span>
+              <span class="text-sm text-slate-700">{{
+                $t('generate.config.cacheManagement')
+              }}</span>
             </el-divider>
 
             <el-button
@@ -470,7 +501,6 @@
   import axios from 'axios'
   import { ElMessage } from 'element-plus'
   import * as monaco from 'monaco-editor'
-
   // 配置 Monaco Editor workers
   import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
   import cssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker'
@@ -478,9 +508,10 @@
   import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker'
   import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
   import { computed, nextTick, onMounted, reactive, ref, watch } from 'vue'
-  import { useRouter } from 'vue-router'
   import { useI18n } from 'vue-i18n'
+  import { useRouter } from 'vue-router'
 
+  import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
   import type {
     GeneratorConfig,
     OpenAPIDocument,
@@ -488,8 +519,6 @@
   } from '@/types/openapi'
   import { parseOpenAPI } from '@/utils/openapi-parser'
   import { generateTypeScriptCode } from '@/utils/typescript-generator'
-  import { LOCALE_OPTIONS, setLocale, getCurrentLocale } from '@/locales'
-  import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 
   // 设置 Monaco Editor 环境
   self.MonacoEnvironment = {

@@ -2,16 +2,15 @@
 import { filterByTags } from './openapi-parser'
 
 import type {
-  OpenAPIDocument,
-  GeneratorConfig,
+  FileTreeNode,
   GenerateOptions,
   GenerateResult,
   GeneratedFile,
-  FileTreeNode,
-  PathItemObject,
+  GeneratorConfig,
+  OpenAPIDocument,
   OperationObject,
-  SchemaObject,
   ParameterObject,
+  SchemaObject,
 } from '@/types/openapi'
 
 /**
@@ -166,7 +165,7 @@ class TypeScriptGenerator {
     Object.entries(tagGroups).forEach(([tag, operations]) => {
       // 修复过滤逻辑：如果没有配置outputTags，生成所有标签
       // 如果配置了outputTags，只生成指定的tags，但default标签总是生成
-      const shouldGenerate = 
+      const shouldGenerate =
         this.config.outputTags.length === 0 || // 没有配置过滤，生成所有
         this.config.outputTags.includes(tag) || // 在过滤列表中
         tag === 'default' // default标签总是生成
@@ -391,19 +390,22 @@ class TypeScriptGenerator {
         const operation = pathItem[method]
         if (operation) {
           const operationKey = `${method}:${path}`
-          
+
           // 防止重复处理同一个操作
           if (processedOperations.has(operationKey)) {
             return
           }
           processedOperations.add(operationKey)
 
-          const tags = operation.tags && operation.tags.length > 0 ? operation.tags : ['default']
+          const tags =
+            operation.tags && operation.tags.length > 0
+              ? operation.tags
+              : ['default']
 
           // 如果一个操作有多个标签，只使用第一个标签来避免重复
           // 或者根据业务需求，可以选择使用所有标签
           const primaryTag = tags[0]
-          
+
           if (!groups[primaryTag]) {
             groups[primaryTag] = []
           }

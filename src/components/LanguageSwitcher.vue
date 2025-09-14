@@ -1,9 +1,9 @@
 <template>
   <el-select
     v-model="currentLocale"
-    @change="handleLocaleChange"
     :class="props.class || 'w-40'"
     :size="props.size || 'default'"
+    @change="handleLocaleChange"
   >
     <el-option
       v-for="option in LOCALE_OPTIONS"
@@ -15,10 +15,11 @@
 </template>
 
 <script setup lang="ts">
+  import { ElMessage } from 'element-plus'
   import { ref } from 'vue'
   import { useI18n } from 'vue-i18n'
-  import { ElMessage } from 'element-plus'
-  import { LOCALE_OPTIONS, setLocale, getCurrentLocale } from '@/locales'
+
+  import { getCurrentLocale, LOCALE_OPTIONS, setLocale } from '@/locales'
 
   interface Props {
     class?: string
@@ -27,7 +28,7 @@
 
   const props = withDefaults(defineProps<Props>(), {
     class: 'w-40',
-    size: 'default'
+    size: 'default',
   })
 
   const { t } = useI18n()

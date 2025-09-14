@@ -18,32 +18,34 @@ export default {
     warning: 'Warning',
     info: 'Info',
     upload: 'File Upload',
-    url: 'URL Input'
+    url: 'URL Input',
   },
   nav: {
     home: 'Home',
-    generate: 'Generate Code'
+    generate: 'Generate Code',
   },
   home: {
     title: 'OpenAPI to TypeScript Converter',
-    subtitle: 'Quickly convert OpenAPI/Swagger documents to TypeScript type definitions',
-    description: 'Support multiple input formats and generate high-quality TypeScript code',
+    subtitle:
+      'Quickly convert OpenAPI/Swagger documents to TypeScript type definitions',
+    description:
+      'Support multiple input formats and generate high-quality TypeScript code',
     getStarted: 'Get Started',
     features: {
       title: 'Core Features',
       parse: {
         title: 'OpenAPI Parsing',
-        desc: 'Support OpenAPI 3.0/2.0 and Swagger formats'
+        desc: 'Support OpenAPI 3.0/2.0 and Swagger formats',
       },
       generate: {
         title: 'TypeScript Generation',
-        desc: 'Generate type-safe TypeScript interfaces and types'
+        desc: 'Generate type-safe TypeScript interfaces and types',
       },
       download: {
         title: 'File Download',
-        desc: 'Support single file or packaged download of generated code'
-      }
-    }
+        desc: 'Support single file or packaged download of generated code',
+      },
+    },
   },
   generate: {
     title: 'Code Generation',
@@ -64,18 +66,21 @@ export default {
       clickText: 'click to upload',
       tip: 'Support .json, .yaml, .yml format OpenAPI documents',
       uploadedFile: 'Uploaded file',
-      loadedUrl: 'Loaded URL'
+      loadedUrl: 'Loaded URL',
     },
     urlInput: {
       placeholder: 'Please enter the URL of OpenAPI document',
       loadBtn: 'Load OpenAPI Document',
       corsHelp: {
         title: 'CORS Restriction Notice:',
-        description: 'Due to browser security policies, some URLs may not be directly accessible. If you encounter CORS issues, please try:',
-        solutions: '• Download OpenAPI file and use file upload function\n• Use CORS-enabled API addresses (such as GitHub Raw links)\n• Contact API provider to add CORS support',
+        description:
+          'Due to browser security policies, some URLs may not be directly accessible. If you encounter CORS issues, please try:',
+        solutions:
+          '• Download OpenAPI file and use file upload function\n• Use CORS-enabled API addresses (such as GitHub Raw links)\n• Contact API provider to add CORS support',
         supportedUrls: 'URL types that usually support direct access:',
-        urlTypes: '• GitHub Raw files: https://raw.githubusercontent.com/...\n• Public CDN links: https://cdn.jsdelivr.net/...\n• API documentation addresses with CORS configured'
-      }
+        urlTypes:
+          '• GitHub Raw files: https://raw.githubusercontent.com/...\n• Public CDN links: https://cdn.jsdelivr.net/...\n• API documentation addresses with CORS configured',
+      },
     },
     docInfo: {
       title: 'Document Information',
@@ -83,13 +88,13 @@ export default {
       version: 'Version',
       pathCount: 'API Count',
       tagCount: 'Tag Count',
-      description: 'Description'
+      description: 'Description',
     },
     preview: {
       title: 'Generation Preview',
       fileStructure: 'File Directory Structure',
       apiTab: 'Generated API Functions (Non-separated Types Mode)',
-      typesTab: 'Unified Type Definitions (Separated Types Mode)'
+      typesTab: 'Unified Type Definitions (Separated Types Mode)',
     },
     config: {
       title: 'Generation Configuration',
@@ -110,11 +115,11 @@ export default {
       namedExport: 'Named Export',
       defaultExport: 'Default Export',
       cacheManagement: 'Cache Management',
-      clearCache: 'Clear Cache Data'
-    }
+      clearCache: 'Clear Cache Data',
+    },
   },
   settings: {
     language: 'Language Settings',
-    theme: 'Theme Settings'
-  }
+    theme: 'Theme Settings',
+  },
 }

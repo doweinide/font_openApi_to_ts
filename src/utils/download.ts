@@ -1,7 +1,7 @@
 // 文件下载工具
 import JSZip from 'jszip'
 
-import type { GeneratedFile, DownloadOptions } from '@/types/openapi'
+import type { DownloadOptions, GeneratedFile } from '@/types/openapi'
 
 /**
  * 下载单个文件

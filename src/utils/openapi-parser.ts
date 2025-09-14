@@ -3,10 +3,10 @@ import * as yaml from 'js-yaml'
 
 import type {
   OpenAPIDocument,
+  OperationObject,
   ParseOpenAPIOptions,
   ParseResult,
   PathItemObject,
-  OperationObject,
   SchemaObject,
 } from '@/types/openapi'
 

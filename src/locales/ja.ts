@@ -18,11 +18,11 @@ export default {
     warning: '警告',
     info: '情報',
     upload: 'ファイルアップロード',
-    url: 'URL入力'
+    url: 'URL入力',
   },
   nav: {
     home: 'ホーム',
-    generate: 'コード生成'
+    generate: 'コード生成',
   },
   home: {
     title: 'OpenAPI から TypeScript への変換ツール',
@@ -33,22 +33,23 @@ export default {
       title: 'コア機能',
       parse: {
         title: 'OpenAPI 解析',
-        desc: 'OpenAPI 3.0/2.0 と Swagger 形式をサポート'
+        desc: 'OpenAPI 3.0/2.0 と Swagger 形式をサポート',
       },
       generate: {
         title: 'TypeScript 生成',
-        desc: '型安全な TypeScript インターフェースと型を生成'
+        desc: '型安全な TypeScript インターフェースと型を生成',
       },
       download: {
         title: 'ファイルダウンロード',
-        desc: '生成されたコードの単一ファイルまたはパッケージダウンロードをサポート'
-      }
-    }
+        desc: '生成されたコードの単一ファイルまたはパッケージダウンロードをサポート',
+      },
+    },
   },
   generate: {
     title: 'コード生成',
     inputLabel: 'OpenAPI ドキュメントを入力',
-    inputPlaceholder: 'OpenAPI/Swagger JSON または YAML の内容を入力してください...',
+    inputPlaceholder:
+      'OpenAPI/Swagger JSON または YAML の内容を入力してください...',
     generateBtn: 'TypeScript を生成',
     downloadBtn: 'コードをダウンロード',
     copyBtn: 'コードをコピー',
@@ -64,18 +65,21 @@ export default {
       clickText: 'クリックしてアップロード',
       tip: '.json、.yaml、.yml 形式の OpenAPI ドキュメントをサポート',
       uploadedFile: 'アップロードされたファイル',
-      loadedUrl: '読み込まれた URL'
+      loadedUrl: '読み込まれた URL',
     },
     urlInput: {
       placeholder: 'OpenAPI ドキュメントの URL を入力してください',
       loadBtn: 'OpenAPI ドキュメントを読み込み',
       corsHelp: {
         title: 'CORS 制限について：',
-        description: 'ブラウザのセキュリティポリシーにより、一部の URL に直接アクセスできない場合があります。CORS の問題が発生した場合は、以下をお試しください：',
-        solutions: '• OpenAPI ファイルをダウンロードしてファイルアップロード機能を使用\n• CORS 対応の API アドレスを使用（GitHub Raw リンクなど）\n• API プロバイダーに CORS サポートの追加を依頼',
+        description:
+          'ブラウザのセキュリティポリシーにより、一部の URL に直接アクセスできない場合があります。CORS の問題が発生した場合は、以下をお試しください：',
+        solutions:
+          '• OpenAPI ファイルをダウンロードしてファイルアップロード機能を使用\n• CORS 対応の API アドレスを使用（GitHub Raw リンクなど）\n• API プロバイダーに CORS サポートの追加を依頼',
         supportedUrls: '通常直接アクセス可能な URL タイプ：',
-        urlTypes: '• GitHub Raw ファイル：https://raw.githubusercontent.com/...\n• パブリック CDN リンク：https://cdn.jsdelivr.net/...\n• CORS が設定された API ドキュメントアドレス'
-      }
+        urlTypes:
+          '• GitHub Raw ファイル：https://raw.githubusercontent.com/...\n• パブリック CDN リンク：https://cdn.jsdelivr.net/...\n• CORS が設定された API ドキュメントアドレス',
+      },
     },
     docInfo: {
       title: 'ドキュメント情報',
@@ -83,13 +87,13 @@ export default {
       version: 'バージョン',
       pathCount: 'API 数',
       tagCount: 'タグ数',
-      description: '説明'
+      description: '説明',
     },
     preview: {
       title: '生成プレビュー',
       fileStructure: 'ファイルディレクトリ構造',
       apiTab: '生成された API 関数（型分離なしモード）',
-      typesTab: '統一型定義（型分離モード）'
+      typesTab: '統一型定義（型分離モード）',
     },
     config: {
       title: '生成設定',
@@ -110,11 +114,11 @@ export default {
       namedExport: '名前付きエクスポート',
       defaultExport: 'デフォルトエクスポート',
       cacheManagement: 'キャッシュ管理',
-      clearCache: 'キャッシュデータをクリア'
-    }
+      clearCache: 'キャッシュデータをクリア',
+    },
   },
   settings: {
     language: '言語設定',
-    theme: 'テーマ設定'
-  }
+    theme: 'テーマ設定',
+  },
 }

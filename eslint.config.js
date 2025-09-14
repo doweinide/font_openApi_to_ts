@@ -216,6 +216,22 @@ export default [
     },
   },
   
+  // 语言文件配置 - 禁用对象排序规则
+  {
+    files: ['src/locales/**/*.ts'],
+    plugins: {
+      '@typescript-eslint': typescriptESLint,
+      prettier,
+    },
+    rules: {
+      'prettier/prettier': 'error',
+      'perfectionist/sort-objects': 'off', // 语言文件不需要对象排序
+      '@typescript-eslint/no-unused-vars': 'warn',
+      'no-unused-vars': 'off',
+      'no-undef': 'off',
+    },
+  },
+
   // 测试文件配置
   {
     files: ['**/*.test.ts', '**/*.test.js', '**/*.spec.ts', '**/*.spec.js'],

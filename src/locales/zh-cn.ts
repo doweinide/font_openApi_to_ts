@@ -18,11 +18,11 @@ export default {
     warning: '警告',
     info: '提示',
     upload: '文件上传',
-    url: 'URL 输入'
+    url: 'URL 输入',
   },
   nav: {
     home: '首页',
-    generate: '生成代码'
+    generate: '生成代码',
   },
   home: {
     title: 'OpenAPI 转 TypeScript 工具',
@@ -33,17 +33,17 @@ export default {
       title: '核心功能',
       parse: {
         title: 'OpenAPI 解析',
-        desc: '支持 OpenAPI 3.0/2.0 和 Swagger 格式'
+        desc: '支持 OpenAPI 3.0/2.0 和 Swagger 格式',
       },
       generate: {
         title: 'TypeScript 生成',
-        desc: '生成类型安全的 TypeScript 接口和类型'
+        desc: '生成类型安全的 TypeScript 接口和类型',
       },
       download: {
         title: '文件下载',
-        desc: '支持单文件或打包下载生成的代码'
-      }
-    }
+        desc: '支持单文件或打包下载生成的代码',
+      },
+    },
   },
   generate: {
     title: '代码生成',
@@ -64,18 +64,21 @@ export default {
       clickText: '点击上传',
       tip: '支持 .json、.yaml、.yml 格式的 OpenAPI 文档',
       uploadedFile: '已上传文件',
-      loadedUrl: '已加载 URL'
+      loadedUrl: '已加载 URL',
     },
     urlInput: {
       placeholder: '请输入 OpenAPI 文档的 URL 地址',
       loadBtn: '加载 OpenAPI 文档',
       corsHelp: {
         title: '跨域限制说明：',
-        description: '由于浏览器安全策略，部分URL可能无法直接访问。如遇到跨域问题，请尝试：',
-        solutions: '• 下载OpenAPI文件后使用文件上传功能\n• 使用支持CORS的API地址（如GitHub Raw链接）\n• 联系API提供方添加CORS支持',
+        description:
+          '由于浏览器安全策略，部分URL可能无法直接访问。如遇到跨域问题，请尝试：',
+        solutions:
+          '• 下载OpenAPI文件后使用文件上传功能\n• 使用支持CORS的API地址（如GitHub Raw链接）\n• 联系API提供方添加CORS支持',
         supportedUrls: '通常支持直接访问的URL类型：',
-        urlTypes: '• GitHub Raw文件：https://raw.githubusercontent.com/...\n• 公共CDN链接：https://cdn.jsdelivr.net/...\n• 已配置CORS的API文档地址'
-      }
+        urlTypes:
+          '• GitHub Raw文件：https://raw.githubusercontent.com/...\n• 公共CDN链接：https://cdn.jsdelivr.net/...\n• 已配置CORS的API文档地址',
+      },
     },
     docInfo: {
       title: '文档信息',
@@ -83,13 +86,13 @@ export default {
       version: '版本',
       pathCount: '接口数量',
       tagCount: '标签数量',
-      description: '描述'
+      description: '描述',
     },
     preview: {
       title: '生成效果预览',
       fileStructure: '文件目录结构',
       apiTab: '生成的 API 函数(不分离类型模式)',
-      typesTab: '统一类型定义(分离类型模式)'
+      typesTab: '统一类型定义(分离类型模式)',
     },
     config: {
       title: '生成配置',
@@ -110,11 +113,11 @@ export default {
       namedExport: '命名导出',
       defaultExport: '默认导出',
       cacheManagement: '缓存管理',
-      clearCache: '清除缓存数据'
-    }
+      clearCache: '清除缓存数据',
+    },
   },
   settings: {
     language: '语言设置',
-    theme: '主题设置'
-  }
+    theme: '主题设置',
+  },
 }

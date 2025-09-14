@@ -1,12 +1,13 @@
 <script setup lang="ts">
-  import { computed } from 'vue'
   import { ElConfigProvider } from 'element-plus'
-  import { RouterView } from 'vue-router'
+  import { computed } from 'vue'
   import { useI18n } from 'vue-i18n'
+  import { RouterView } from 'vue-router'
+
   import { getCurrentElementPlusLocale } from './locales'
 
   const { locale } = useI18n()
-  
+
   // 响应式的 Element Plus 语言包
   const elementPlusLocale = computed(() => {
     return getCurrentElementPlusLocale()
