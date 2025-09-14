@@ -1,0 +1,120 @@
+export default {
+  common: {
+    confirm: 'Confirm',
+    cancel: 'Cancel',
+    save: 'Save',
+    delete: 'Delete',
+    edit: 'Edit',
+    add: 'Add',
+    search: 'Search',
+    reset: 'Reset',
+    submit: 'Submit',
+    back: 'Back',
+    next: 'Next',
+    prev: 'Previous',
+    loading: 'Loading...',
+    success: 'Operation successful',
+    error: 'Operation failed',
+    warning: 'Warning',
+    info: 'Info',
+    upload: 'File Upload',
+    url: 'URL Input'
+  },
+  nav: {
+    home: 'Home',
+    generate: 'Generate Code'
+  },
+  home: {
+    title: 'OpenAPI to TypeScript Converter',
+    subtitle: 'Quickly convert OpenAPI/Swagger documents to TypeScript type definitions',
+    description: 'Support multiple input formats and generate high-quality TypeScript code',
+    getStarted: 'Get Started',
+    features: {
+      title: 'Core Features',
+      parse: {
+        title: 'OpenAPI Parsing',
+        desc: 'Support OpenAPI 3.0/2.0 and Swagger formats'
+      },
+      generate: {
+        title: 'TypeScript Generation',
+        desc: 'Generate type-safe TypeScript interfaces and types'
+      },
+      download: {
+        title: 'File Download',
+        desc: 'Support single file or packaged download of generated code'
+      }
+    }
+  },
+  generate: {
+    title: 'Code Generation',
+    inputLabel: 'Input OpenAPI Document',
+    inputPlaceholder: 'Please enter OpenAPI/Swagger JSON or YAML content...',
+    generateBtn: 'Generate TypeScript',
+    downloadBtn: 'Download Code',
+    copyBtn: 'Copy Code',
+    clearBtn: 'Clear',
+    formatBtn: 'Format',
+    outputLabel: 'Generated TypeScript Code',
+    noOutput: 'No generated code yet',
+    parseError: 'Parse failed, please check input format',
+    generateSuccess: 'Code generated successfully',
+    copySuccess: 'Code copied to clipboard',
+    uploadArea: {
+      dragText: 'Drag files here or',
+      clickText: 'click to upload',
+      tip: 'Support .json, .yaml, .yml format OpenAPI documents',
+      uploadedFile: 'Uploaded file',
+      loadedUrl: 'Loaded URL'
+    },
+    urlInput: {
+      placeholder: 'Please enter the URL of OpenAPI document',
+      loadBtn: 'Load OpenAPI Document',
+      corsHelp: {
+        title: 'CORS Restriction Notice:',
+        description: 'Due to browser security policies, some URLs may not be directly accessible. If you encounter CORS issues, please try:',
+        solutions: '• Download OpenAPI file and use file upload function\n• Use CORS-enabled API addresses (such as GitHub Raw links)\n• Contact API provider to add CORS support',
+        supportedUrls: 'URL types that usually support direct access:',
+        urlTypes: '• GitHub Raw files: https://raw.githubusercontent.com/...\n• Public CDN links: https://cdn.jsdelivr.net/...\n• API documentation addresses with CORS configured'
+      }
+    },
+    docInfo: {
+      title: 'Document Information',
+      apiTitle: 'Title',
+      version: 'Version',
+      pathCount: 'API Count',
+      tagCount: 'Tag Count',
+      description: 'Description'
+    },
+    preview: {
+      title: 'Generation Preview',
+      fileStructure: 'File Directory Structure',
+      apiTab: 'Generated API Functions (Non-separated Types Mode)',
+      typesTab: 'Unified Type Definitions (Separated Types Mode)'
+    },
+    config: {
+      title: 'Generation Configuration',
+      selectTags: 'Select Tags',
+      selectTagsPlaceholder: 'Select tags to generate (empty means all)',
+      importTemplate: 'Import Statement Template',
+      requestUtilPath: 'Request Utility Path',
+      functionNaming: 'Function Naming Rule',
+      typeNaming: 'Type Naming Rule',
+      fileStructure: 'File Structure',
+      separateTypes: 'Separate Type Files',
+      generateIndex: 'Generate index.ts',
+      generateUtils: 'Generate Utility Files',
+      codeStyle: 'Code Style',
+      useAsync: 'Use async/await',
+      includeComments: 'Include Comments',
+      exportStyle: 'Export Style',
+      namedExport: 'Named Export',
+      defaultExport: 'Default Export',
+      cacheManagement: 'Cache Management',
+      clearCache: 'Clear Cache Data'
+    }
+  },
+  settings: {
+    language: 'Language Settings',
+    theme: 'Theme Settings'
+  }
+}

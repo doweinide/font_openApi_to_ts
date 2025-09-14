@@ -1,0 +1,120 @@
+export default {
+  common: {
+    confirm: '確認',
+    cancel: 'キャンセル',
+    save: '保存',
+    delete: '削除',
+    edit: '編集',
+    add: '追加',
+    search: '検索',
+    reset: 'リセット',
+    submit: '送信',
+    back: '戻る',
+    next: '次へ',
+    prev: '前へ',
+    loading: '読み込み中...',
+    success: '操作が成功しました',
+    error: '操作が失敗しました',
+    warning: '警告',
+    info: '情報',
+    upload: 'ファイルアップロード',
+    url: 'URL入力'
+  },
+  nav: {
+    home: 'ホーム',
+    generate: 'コード生成'
+  },
+  home: {
+    title: 'OpenAPI から TypeScript への変換ツール',
+    subtitle: 'OpenAPI/Swagger ドキュメントを TypeScript 型定義に素早く変換',
+    description: '複数の入力形式をサポートし、高品質な TypeScript コードを生成',
+    getStarted: '始める',
+    features: {
+      title: 'コア機能',
+      parse: {
+        title: 'OpenAPI 解析',
+        desc: 'OpenAPI 3.0/2.0 と Swagger 形式をサポート'
+      },
+      generate: {
+        title: 'TypeScript 生成',
+        desc: '型安全な TypeScript インターフェースと型を生成'
+      },
+      download: {
+        title: 'ファイルダウンロード',
+        desc: '生成されたコードの単一ファイルまたはパッケージダウンロードをサポート'
+      }
+    }
+  },
+  generate: {
+    title: 'コード生成',
+    inputLabel: 'OpenAPI ドキュメントを入力',
+    inputPlaceholder: 'OpenAPI/Swagger JSON または YAML の内容を入力してください...',
+    generateBtn: 'TypeScript を生成',
+    downloadBtn: 'コードをダウンロード',
+    copyBtn: 'コードをコピー',
+    clearBtn: 'クリア',
+    formatBtn: 'フォーマット',
+    outputLabel: '生成された TypeScript コード',
+    noOutput: '生成されたコードはまだありません',
+    parseError: '解析に失敗しました。入力形式を確認してください',
+    generateSuccess: 'コードが正常に生成されました',
+    copySuccess: 'コードがクリップボードにコピーされました',
+    uploadArea: {
+      dragText: 'ファイルをここにドラッグするか',
+      clickText: 'クリックしてアップロード',
+      tip: '.json、.yaml、.yml 形式の OpenAPI ドキュメントをサポート',
+      uploadedFile: 'アップロードされたファイル',
+      loadedUrl: '読み込まれた URL'
+    },
+    urlInput: {
+      placeholder: 'OpenAPI ドキュメントの URL を入力してください',
+      loadBtn: 'OpenAPI ドキュメントを読み込み',
+      corsHelp: {
+        title: 'CORS 制限について：',
+        description: 'ブラウザのセキュリティポリシーにより、一部の URL に直接アクセスできない場合があります。CORS の問題が発生した場合は、以下をお試しください：',
+        solutions: '• OpenAPI ファイルをダウンロードしてファイルアップロード機能を使用\n• CORS 対応の API アドレスを使用（GitHub Raw リンクなど）\n• API プロバイダーに CORS サポートの追加を依頼',
+        supportedUrls: '通常直接アクセス可能な URL タイプ：',
+        urlTypes: '• GitHub Raw ファイル：https://raw.githubusercontent.com/...\n• パブリック CDN リンク：https://cdn.jsdelivr.net/...\n• CORS が設定された API ドキュメントアドレス'
+      }
+    },
+    docInfo: {
+      title: 'ドキュメント情報',
+      apiTitle: 'タイトル',
+      version: 'バージョン',
+      pathCount: 'API 数',
+      tagCount: 'タグ数',
+      description: '説明'
+    },
+    preview: {
+      title: '生成プレビュー',
+      fileStructure: 'ファイルディレクトリ構造',
+      apiTab: '生成された API 関数（型分離なしモード）',
+      typesTab: '統一型定義（型分離モード）'
+    },
+    config: {
+      title: '生成設定',
+      selectTags: 'タグを選択',
+      selectTagsPlaceholder: '生成するタグを選択（空の場合はすべて）',
+      importTemplate: 'インポート文テンプレート',
+      requestUtilPath: 'リクエストユーティリティパス',
+      functionNaming: '関数命名規則',
+      typeNaming: '型命名規則',
+      fileStructure: 'ファイル構造',
+      separateTypes: '型ファイルを分離',
+      generateIndex: 'index.ts を生成',
+      generateUtils: 'ユーティリティファイルを生成',
+      codeStyle: 'コードスタイル',
+      useAsync: 'async/await を使用',
+      includeComments: 'コメントを含める',
+      exportStyle: 'エクスポートスタイル',
+      namedExport: '名前付きエクスポート',
+      defaultExport: 'デフォルトエクスポート',
+      cacheManagement: 'キャッシュ管理',
+      clearCache: 'キャッシュデータをクリア'
+    }
+  },
+  settings: {
+    language: '言語設定',
+    theme: 'テーマ設定'
+  }
+}

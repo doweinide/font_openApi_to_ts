@@ -14,14 +14,19 @@
               @click="$router.push('/')"
             >
               <el-icon class="mr-2"><ArrowLeft /></el-icon>
-              返回首页
+              {{ $t('common.back') }}
             </el-button>
             <el-divider direction="vertical" class="border-slate-300" />
             <h1
               class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-2xl font-bold text-transparent"
             >
-              生成结果
+              {{ $t('generate.title') }}
             </h1>
+          </div>
+          
+          <!-- 语言切换器 -->
+          <div class="flex items-center space-x-4">
+            <LanguageSwitcher class="w-32" size="small" />
           </div>
 
           <div class="flex items-center space-x-4">
@@ -34,7 +39,7 @@
               @click="downloadAllFiles"
             >
               <el-icon class="mr-2"><Download /></el-icon>
-              下载 ZIP
+              {{ $t('generate.downloadBtn') }}
             </el-button>
 
             <!-- 复制当前文件按钮 -->
@@ -45,7 +50,7 @@
               @click="copyCurrentFile"
             >
               <el-icon class="mr-2"><CopyDocument /></el-icon>
-              复制代码
+              {{ $t('generate.copyBtn') }}
             </el-button>
           </div>
         </div>
@@ -170,8 +175,11 @@
   import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
   import { ref, reactive, onMounted, nextTick, watch } from 'vue'
   import { useRouter } from 'vue-router'
+  import { useI18n } from 'vue-i18n'
 
   import type { GeneratedFile, FileTreeNode } from '@/types/openapi'
+  import { LOCALE_OPTIONS, setLocale, getCurrentLocale } from '@/locales'
+  import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 
   // 设置 Monaco Editor 环境
   self.MonacoEnvironment = {
@@ -193,6 +201,7 @@
   }
 
   const router = useRouter()
+  const { t } = useI18n()
 
   // 响应式数据
   const generatedFiles = ref<GeneratedFile[]>([])

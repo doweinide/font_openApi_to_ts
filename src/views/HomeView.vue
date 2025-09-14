@@ -3,16 +3,20 @@
     class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50"
   >
     <div class="container mx-auto px-6 py-12">
+      <!-- 语言切换器 -->
+      <div class="mb-6 flex justify-end">
+        <LanguageSwitcher class="w-40" size="small" />
+      </div>
+      
       <!-- 页面标题 -->
       <div class="mb-12 text-center">
         <h1
           class="mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-5xl font-bold text-transparent"
         >
-          OpenAPI to TypeScript 转换器
+          {{ $t('home.title') }}
         </h1>
         <p class="mx-auto max-w-2xl text-xl leading-relaxed text-slate-600">
-          将 OpenAPI 3.0/3.1 规范自动转换为 TypeScript 请求模板，支持 JSON 和
-          YAML 格式
+          {{ $t('home.subtitle') }}
         </p>
       </div>
 
@@ -27,12 +31,12 @@
                 class="-mx-6 -mt-6 mb-6 flex items-center bg-gradient-to-r from-blue-500 to-indigo-500 px-6 py-4 text-white"
               >
                 <el-icon class="mr-3 text-xl"><Upload /></el-icon>
-                <span class="text-xl font-semibold">上传 OpenAPI 文档</span>
+                <span class="text-xl font-semibold">{{ $t('generate.inputLabel') }}</span>
               </div>
             </template>
 
             <el-tabs v-model="activeTab" class="mb-4">
-              <el-tab-pane label="文件上传" name="file">
+              <el-tab-pane :label="$t('common.upload')" name="file">
                 <el-upload
                   ref="uploadRef"
                   class="upload-demo"
@@ -49,10 +53,10 @@
                       <upload-filled />
                     </el-icon>
                     <div class="el-upload__text text-lg">
-                      拖拽文件到此处或 <em>点击上传</em>
+                      {{ $t('generate.uploadArea.dragText') }} <em>{{ $t('generate.uploadArea.clickText') }}</em>
                     </div>
                     <div class="el-upload__tip mt-2 text-sm text-gray-500">
-                      支持 .json、.yaml、.yml 格式的 OpenAPI 文档
+                      {{ $t('generate.uploadArea.tip') }}
                     </div>
                   </div>
                 </el-upload>
@@ -63,7 +67,7 @@
                   class="mt-4"
                 >
                   <el-alert
-                    :title="`已上传文件: ${uploadedFile.name}`"
+                    :title="`${$t('generate.uploadArea.uploadedFile')}: ${uploadedFile.name}`"
                     type="success"
                     :closable="false"
                     show-icon
@@ -71,11 +75,11 @@
                 </div>
               </el-tab-pane>
 
-              <el-tab-pane label="URL 输入" name="url">
+              <el-tab-pane :label="$t('common.url')" name="url">
                 <div class="space-y-4">
                   <el-input
                     v-model="urlInput"
-                    placeholder="请输入 OpenAPI 文档的 URL 地址"
+                    :placeholder="$t('generate.urlInput.placeholder')"
                     size="large"
                     clearable
                   >
@@ -93,28 +97,19 @@
                         ><InfoFilled
                       /></el-icon>
                       <div class="text-sm text-blue-700">
-                        <p class="mb-1 font-medium">跨域限制说明：</p>
+                        <p class="mb-1 font-medium">{{ $t('generate.urlInput.corsHelp.title') }}</p>
                         <p class="mb-2">
-                          由于浏览器安全策略，部分URL可能无法直接访问。如遇到跨域问题，请尝试：
+                          {{ $t('generate.urlInput.corsHelp.description') }}
                         </p>
-                        <ul
-                          class="mb-3 list-inside list-disc space-y-1 text-xs"
-                        >
-                          <li>下载OpenAPI文件后使用文件上传功能</li>
-                          <li>使用支持CORS的API地址（如GitHub Raw链接）</li>
-                          <li>联系API提供方添加CORS支持</li>
-                        </ul>
+                        <div class="mb-3 whitespace-pre-line text-xs">
+                          {{ $t('generate.urlInput.corsHelp.solutions') }}
+                        </div>
                         <p class="mb-1 font-medium">
-                          通常支持直接访问的URL类型：
+                          {{ $t('generate.urlInput.corsHelp.supportedUrls') }}
                         </p>
-                        <ul class="list-inside list-disc space-y-1 text-xs">
-                          <li>
-                            GitHub
-                            Raw文件：https://raw.githubusercontent.com/...
-                          </li>
-                          <li>公共CDN链接：https://cdn.jsdelivr.net/...</li>
-                          <li>已配置CORS的API文档地址</li>
-                        </ul>
+                        <div class="whitespace-pre-line text-xs">
+                          {{ $t('generate.urlInput.corsHelp.urlTypes') }}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -128,7 +123,7 @@
                     @click="handleUrlLoad"
                   >
                     <el-icon class="mr-2"><Download /></el-icon>
-                    加载 OpenAPI 文档
+                    {{ $t('generate.urlInput.loadBtn') }}
                   </el-button>
 
                   <!-- URL 加载成功显示 -->
@@ -137,7 +132,7 @@
                     class="mt-4"
                   >
                     <el-alert
-                      :title="`已加载 URL: ${uploadedFile.name}`"
+                      :title="`${$t('generate.uploadArea.loadedUrl')}: ${uploadedFile.name}`"
                       type="success"
                       :closable="false"
                       show-icon
@@ -150,37 +145,37 @@
             <!-- 文档预览 -->
             <div v-if="parsedDoc" class="mt-6">
               <el-divider content-position="left">
-                <span class="text-sm font-medium text-slate-700">文档信息</span>
+                <span class="text-sm font-medium text-slate-700">{{ $t('generate.docInfo.title') }}</span>
               </el-divider>
               <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
                 <div class="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
                   <div>
-                    <span class="font-medium text-slate-700">标题:</span>
+                    <span class="font-medium text-slate-700">{{ $t('generate.docInfo.apiTitle') }}:</span>
                     <span class="ml-2 text-slate-600">{{
                       parsedDoc.info.title
                     }}</span>
                   </div>
                   <div>
-                    <span class="font-medium text-slate-700">版本:</span>
+                    <span class="font-medium text-slate-700">{{ $t('generate.docInfo.version') }}:</span>
                     <span class="ml-2 text-slate-600">{{
                       parsedDoc.info.version
                     }}</span>
                   </div>
                   <div>
-                    <span class="font-medium text-slate-700">接口数量:</span>
+                    <span class="font-medium text-slate-700">{{ $t('generate.docInfo.pathCount') }}:</span>
                     <span class="ml-2 text-slate-600">{{
                       getPathCount()
                     }}</span>
                   </div>
                   <div>
-                    <span class="font-medium text-slate-700">标签数量:</span>
+                    <span class="font-medium text-slate-700">{{ $t('generate.docInfo.tagCount') }}:</span>
                     <span class="ml-2 text-slate-600">{{
                       parsedDoc.tags?.length || 0
                     }}</span>
                   </div>
                 </div>
                 <div v-if="parsedDoc.info.description" class="mt-3">
-                  <span class="font-medium text-slate-700">描述:</span>
+                  <span class="font-medium text-slate-700">{{ $t('generate.docInfo.description') }}:</span>
                   <p class="mt-1 text-slate-600">
                     {{ parsedDoc.info.description }}
                   </p>
@@ -198,7 +193,7 @@
                 class="-mx-6 -mt-6 mb-6 flex items-center bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-4 text-white"
               >
                 <el-icon class="mr-3 text-xl"><View /></el-icon>
-                <span class="text-xl font-semibold">生成效果预览</span>
+                <span class="text-xl font-semibold">{{ $t('generate.preview.title') }}</span>
               </div>
             </template>
 
@@ -212,7 +207,7 @@
                     <el-icon class="mr-2 text-emerald-500"
                       ><FolderOpened
                     /></el-icon>
-                    文件目录结构
+                    {{ $t('generate.preview.fileStructure') }}
                   </h4>
                   <div class="space-y-2 text-sm">
                     <div class="flex items-center text-slate-600">
@@ -278,7 +273,7 @@
                 <div class="sticky top-8">
                   <el-tabs v-model="previewTab" class="preview-tabs">
                     <el-tab-pane
-                      label="生成的 API 函数(不分离类型模式)"
+                      :label="$t('generate.preview.apiTab')"
                       name="api"
                     >
                       <div
@@ -291,7 +286,7 @@
                       </div>
                     </el-tab-pane>
                     <el-tab-pane
-                      label="统一类型定义(分离类型模式)"
+                      :label="$t('generate.preview.typesTab')"
                       name="types"
                     >
                       <div
@@ -320,17 +315,17 @@
                 class="-mx-6 -mt-6 flex items-center bg-gradient-to-r from-indigo-500 to-purple-500 px-6 py-4 text-white"
               >
                 <el-icon class="mr-3 text-xl"><Setting /></el-icon>
-                <span class="text-xl font-semibold">生成配置</span>
+                <span class="text-xl font-semibold">{{ $t('generate.config.title') }}</span>
               </div>
             </template>
 
             <el-form :model="config" label-position="top" class="space-y-4">
               <!-- Tags 配置 -->
-              <el-form-item label="选择 Tags">
+              <el-form-item :label="$t('generate.config.selectTags')">
                 <el-select
                   v-model="config.outputTags"
                   multiple
-                  placeholder="选择要生成的 tags（留空表示全部）"
+                  :placeholder="$t('generate.config.selectTagsPlaceholder')"
                   class="w-full"
                   :disabled="!availableTags.length"
                 >
@@ -344,7 +339,7 @@
               </el-form-item>
 
               <!-- 导入语句配置 -->
-              <el-form-item label="导入语句模板">
+              <el-form-item :label="$t('generate.config.importTemplate')">
                 <el-input
                   v-model="config.importTemplate"
                   type="textarea"
@@ -354,7 +349,7 @@
               </el-form-item>
 
               <!-- 请求工具路径 -->
-              <el-form-item label="请求工具路径">
+              <el-form-item :label="$t('generate.config.requestUtilPath')">
                 <el-input
                   v-model="config.requestUtilPath"
                   placeholder="../utils/request"
@@ -362,14 +357,14 @@
               </el-form-item>
 
               <!-- 命名规则 -->
-              <el-form-item label="函数命名规则">
+              <el-form-item :label="$t('generate.config.functionNaming')">
                 <el-radio-group v-model="config.functionNaming" class="w-full">
                   <el-radio value="camelCase">camelCase</el-radio>
                   <el-radio value="snake_case">snake_case</el-radio>
                 </el-radio-group>
               </el-form-item>
 
-              <el-form-item label="类型命名规则">
+              <el-form-item :label="$t('generate.config.typeNaming')">
                 <el-radio-group v-model="config.typeNaming" class="w-full">
                   <el-radio value="PascalCase">PascalCase</el-radio>
                   <el-radio value="camelCase">camelCase</el-radio>
@@ -379,52 +374,52 @@
 
               <!-- 文件结构配置 -->
               <el-divider content-position="left">
-                <span class="text-sm text-slate-700">文件结构</span>
+                <span class="text-sm text-slate-700">{{ $t('generate.config.fileStructure') }}</span>
               </el-divider>
 
               <el-form-item>
                 <el-checkbox v-model="config.separateTypes"
-                  >分离类型文件</el-checkbox
+                  >{{ $t('generate.config.separateTypes') }}</el-checkbox
                 >
               </el-form-item>
               <el-form-item>
                 <el-checkbox v-model="config.generateIndex"
-                  >生成 index.ts</el-checkbox
+                  >{{ $t('generate.config.generateIndex') }}</el-checkbox
                 >
               </el-form-item>
               <el-form-item>
                 <el-checkbox v-model="config.generateUtils"
-                  >生成工具文件</el-checkbox
+                  >{{ $t('generate.config.generateUtils') }}</el-checkbox
                 >
               </el-form-item>
 
               <!-- 代码风格配置 -->
               <el-divider content-position="left">
-                <span class="text-sm text-slate-700">代码风格</span>
+                <span class="text-sm text-slate-700">{{ $t('generate.config.codeStyle') }}</span>
               </el-divider>
 
               <el-form-item>
                 <el-checkbox v-model="config.useAsync"
-                  >使用 async/await</el-checkbox
+                  >{{ $t('generate.config.useAsync') }}</el-checkbox
                 >
               </el-form-item>
               <el-form-item>
                 <el-checkbox v-model="config.includeComments"
-                  >包含注释</el-checkbox
+                  >{{ $t('generate.config.includeComments') }}</el-checkbox
                 >
               </el-form-item>
 
-              <el-form-item label="导出方式">
+              <el-form-item :label="$t('generate.config.exportStyle')">
                 <el-radio-group v-model="config.exportStyle" class="w-full">
-                  <el-radio value="named">命名导出</el-radio>
-                  <el-radio value="default">默认导出</el-radio>
+                  <el-radio value="named">{{ $t('generate.config.namedExport') }}</el-radio>
+                  <el-radio value="default">{{ $t('generate.config.defaultExport') }}</el-radio>
                 </el-radio-group>
               </el-form-item>
             </el-form>
 
             <!-- 缓存管理 -->
             <el-divider content-position="left">
-              <span class="text-sm text-slate-700">缓存管理</span>
+              <span class="text-sm text-slate-700">{{ $t('generate.config.cacheManagement') }}</span>
             </el-divider>
 
             <el-button
@@ -435,7 +430,7 @@
               @click="handleClearCache"
             >
               <el-icon class="mr-2"><Delete /></el-icon>
-              清除缓存数据
+              {{ $t('generate.config.clearCache') }}
             </el-button>
 
             <!-- 生成按钮 -->
@@ -448,7 +443,7 @@
               @click="handleGenerate"
             >
               <el-icon class="mr-2"><Tools /></el-icon>
-              生成 TypeScript 代码
+              {{ $t('generate.generateBtn') }}
             </el-button>
           </el-card>
         </div>
@@ -484,6 +479,7 @@
   import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
   import { computed, nextTick, onMounted, reactive, ref, watch } from 'vue'
   import { useRouter } from 'vue-router'
+  import { useI18n } from 'vue-i18n'
 
   import type {
     GeneratorConfig,
@@ -492,6 +488,8 @@
   } from '@/types/openapi'
   import { parseOpenAPI } from '@/utils/openapi-parser'
   import { generateTypeScriptCode } from '@/utils/typescript-generator'
+  import { LOCALE_OPTIONS, setLocale, getCurrentLocale } from '@/locales'
+  import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 
   // 设置 Monaco Editor 环境
   self.MonacoEnvironment = {
@@ -513,6 +511,7 @@
   }
 
   const router = useRouter()
+  const { t } = useI18n()
 
   // 响应式数据
   const activeTab = ref('file')
