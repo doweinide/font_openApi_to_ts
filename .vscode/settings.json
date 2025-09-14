@@ -22,8 +22,7 @@
   },
 
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "explicit"
+    "source.fixAll.eslint": "explicit"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
@@ -45,6 +44,7 @@
   "prettier.enable": true,
   "prettier.requireConfig": false,
   "prettier.useEditorConfig": false,
+  "prettier.configPath": ".prettierrc",
 
   "tailwindCSS.includeLanguages": {
     "vue": "html",
@@ -52,4 +52,7 @@
   },
 
   "typescript.preferences.includePackageJsonAutoImports": "auto",
+  "i18n-ally.localesPaths": [
+    "src/locales"
+  ],
 }

@@ -19,6 +19,7 @@ export default {
     info: '提示',
     upload: '文件上传',
     url: 'URL 输入',
+    github: '访问 GitHub 仓库',
   },
   nav: {
     home: '首页',

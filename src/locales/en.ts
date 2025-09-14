@@ -19,6 +19,7 @@ export default {
     info: 'Info',
     upload: 'File Upload',
     url: 'URL Input',
+    github: 'Visit GitHub Repository',
   },
   nav: {
     home: 'Home',

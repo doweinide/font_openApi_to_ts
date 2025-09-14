@@ -19,6 +19,7 @@ export default {
     info: '情報',
     upload: 'ファイルアップロード',
     url: 'URL入力',
+    github: 'GitHubリポジトリを訪問',
   },
   nav: {
     home: 'ホーム',
