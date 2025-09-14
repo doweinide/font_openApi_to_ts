@@ -1,305 +1,310 @@
-# 🚀 OpenAPI to TypeScript 转换器
+# 🚀 OpenAPI to TypeScript Converter
 
-一个强大的在线工具，用于将 OpenAPI 规范快速转换为 TypeScript 类型定义和接口声明。
+A powerful online tool for quickly converting OpenAPI specifications to TypeScript type definitions and interface declarations.
 
-# 在线体验入口
-- 🌐 在线体验地址：[font_openApi_to_ts 在线工具](https://doweinide.github.io/font_openApi_to_ts/)
+# Online Experience
+- 🌐 Online Tool: [font_openApi_to_ts Online Tool](https://doweinide.github.io/font_openApi_to_ts/)
 
-## 📖 项目简介
+## 📖 Project Overview
 
-OpenAPI to TypeScript 转换器是一个基于 Vue 3 + TypeScript + Tailwind CSS 构建的现代化 Web 应用，专门用于解析 OpenAPI/Swagger 文档并生成高质量的 TypeScript 代码。无论是 API 接口类型、数据模型还是请求响应结构，都能一键生成标准的 TypeScript 定义。
+The OpenAPI to TypeScript Converter is a modern web application built with Vue 3 + TypeScript + Tailwind CSS, specifically designed to parse OpenAPI/Swagger documents and generate high-quality TypeScript code. Whether it's API interface types, data models, or request-response structures, everything can be generated with one click as standard TypeScript definitions.
 
-## 🎯 解决的问题
+## 🎯 Problems Solved
 
-### 开发痛点
-- **手动编写类型定义耗时费力**：传统方式需要根据 API 文档手动编写 TypeScript 接口
-- **类型定义与 API 不同步**：API 更新后，前端类型定义容易遗漏更新
-- **代码质量参差不齐**：不同开发者编写的类型定义风格不统一
-- **重复劳动**：多个项目需要重复编写相似的类型定义
+### Development Pain Points
+- **Manual type definition is time-consuming**: Traditional methods require manually writing TypeScript interfaces based on API documentation
+- **Type definitions out of sync with API**: Frontend type definitions are easily missed when APIs are updated
+- **Inconsistent code quality**: Type definitions written by different developers have inconsistent styles
+- **Repetitive work**: Multiple projects need to repeatedly write similar type definitions
 
-### 解决方案
-✅ **自动化生成**：一键将 OpenAPI 文档转换为 TypeScript 代码  
-✅ **保持同步**：基于最新 API 文档生成，确保类型定义始终与后端接口同步  
-✅ **标准化输出**：生成符合 TypeScript 最佳实践的高质量代码  
-✅ **提升效率**：大幅减少手动编写类型定义的时间成本  
+### Solutions
+✅ **Automated generation**: One-click conversion of OpenAPI documents to TypeScript code  
+✅ **Stay synchronized**: Generated based on the latest API documentation, ensuring type definitions are always in sync with backend interfaces  
+✅ **Standardized output**: Generate high-quality code that follows TypeScript best practices  
+✅ **Improved efficiency**: Significantly reduce the time cost of manually writing type definitions  
 
-## ✨ 核心功能
+## ✨ Core Features
 
-### 🔧 代码生成功能
-- **完整类型支持**：支持 OpenAPI 3.0+ 规范的所有数据类型
-- **智能接口生成**：自动生成 API 接口函数和类型定义
-- **嵌套类型处理**：完美处理复杂的嵌套对象和数组类型
-- **枚举类型转换**：将 OpenAPI 枚举转换为 TypeScript 联合类型
-- **可选字段识别**：准确识别必填和可选字段
+### 🔧 Code Generation
+- **Complete type support**: Supports all data types in OpenAPI 3.0+ specifications
+- **Smart interface generation**: Automatically generates API interface functions and type definitions
+- **Nested type handling**: Perfect handling of complex nested objects and array types
+- **Enum type conversion**: Converts OpenAPI enums to TypeScript union types
+- **Optional field recognition**: Accurately identifies required and optional fields
 
-### 📝 代码质量优化
-- **智能注释生成**：自动提取 OpenAPI 中的 title 和 description 作为代码注释
-- **命名规范转换**：支持多种命名风格转换（camelCase、PascalCase 等）
-- **代码格式化**：生成格式规范、易读的 TypeScript 代码
-- **去重优化**：自动去除重复的类型定义和接口声明
+### 📝 Code Quality Optimization
+- **Smart comment generation**: Automatically extracts title and description from OpenAPI as code comments
+- **Naming convention conversion**: Supports multiple naming style conversions (camelCase, PascalCase, etc.)
+- **Code formatting**: Generates well-formatted, readable TypeScript code
+- **Deduplication optimization**: Automatically removes duplicate type definitions and interface declarations
 
-### 🎨 用户体验
-- **实时预览**：输入 OpenAPI 文档后实时生成预览
-- **语法高亮**：支持 JSON 和 TypeScript 代码语法高亮
-- **一键复制**：生成的代码支持一键复制到剪贴板
-- **文件下载**：支持将生成的代码打包下载
-- **错误提示**：详细的错误信息和修复建议
+### 🎨 User Experience
+- **Real-time preview**: Real-time generation preview after inputting OpenAPI documents
+- **Syntax highlighting**: Supports JSON and TypeScript code syntax highlighting
+- **One-click copy**: Generated code supports one-click copy to clipboard
+- **File download**: Supports downloading generated code packages
+- **Error prompts**: Detailed error messages and fix suggestions
 
-### 🔄 灵活配置
-- **自定义选项**：支持配置生成选项（如是否包含注释、命名风格等）
-- **标签分组**：按 OpenAPI 标签自动分组生成文件
-- **路径过滤**：支持选择性生成特定路径的接口
-- **类型导入优化**：智能处理类型导入和依赖关系
+### 🔄 Flexible Configuration
+- **Custom options**: Supports configuration of generation options (such as whether to include comments, naming styles, etc.)
+- **Tag grouping**: Automatically groups and generates files by OpenAPI tags
+- **Path filtering**: Supports selective generation of interfaces for specific paths
+- **Type import optimization**: Smart handling of type imports and dependencies
 
-## 🛠️ 技术栈
+## 🛠️ Tech Stack
 
-### 前端框架
-- **Vue 3**：采用 Composition API，提供现代化的开发体验
-- **TypeScript**：全面的类型安全保障
-- **Vite**：极速的开发构建工具
+### Frontend Framework
+- **Vue 3**: Uses Composition API for modern development experience
+- **TypeScript**: Comprehensive type safety guarantee
+- **Vite**: Ultra-fast development build tool
 
-### UI 框架
-- **Tailwind CSS**：原子化 CSS 框架，快速构建美观界面
-- **响应式设计**：完美适配桌面端和移动端
+### UI Framework
+- **Tailwind CSS**: Atomic CSS framework for quickly building beautiful interfaces
+- **Responsive design**: Perfect adaptation for desktop and mobile
 
-### 核心依赖
-- **OpenAPI Parser**：解析 OpenAPI/Swagger 文档
-- **TypeScript Compiler API**：生成高质量的 TypeScript 代码
-- **Monaco Editor**：提供专业的代码编辑体验
+### Core Dependencies
+- **OpenAPI Parser**: Parse OpenAPI/Swagger documents
+- **TypeScript Compiler API**: Generate high-quality TypeScript code
+- **Monaco Editor**: Provide professional code editing experience
 
-### 开发工具
-- **ESLint + Prettier**：代码质量和格式化保障
-- **Husky + lint-staged**：Git 提交钩子和代码检查
-- **GitHub Actions**：自动化 CI/CD 流程
+### Development Tools
+- **ESLint + Prettier**: Code quality and formatting guarantee
+- **Husky + lint-staged**: Git commit hooks and code checking
+- **GitHub Actions**: Automated CI/CD pipeline
 
-## 📁 项目结构
+## 📁 Project Structure
 
 ```
 vue3-Ts-Tailwind-template-Pro-private/
-├── 📁 .github/                    # GitHub Actions 工作流
+├── 📁 .github/                    # GitHub Actions workflows
 │   └── workflows/
-│       └── deploy.yml             # 自动部署配置
-├── 📁 public/                     # 静态资源
-│   └── favicon.ico               # 网站图标
-├── 📁 src/                       # 源代码目录
-│   ├── 📁 types/                 # TypeScript 类型定义
-│   │   └── openapi.d.ts          # OpenAPI 相关类型
-│   ├── 📁 utils/                 # 工具函数
-│   │   ├── typescript-generator.ts # TypeScript 代码生成器
-│   │   └── openapi-parser.ts     # OpenAPI 解析器
-│   ├── 📁 views/                 # 工具函数
-│   │   ├── GenerateView.vue      # 生成视图
-│   │   └── HomeView.vue          # 首页视图
-│   ├── 📁 styles/                # 样式文件
-│   │   └── main.css              # 主样式文件
-│   ├── App.vue                   # 根组件
-│   └── main.ts                   # 应用入口
-├── 📁 template/                  # 构建输出目录
-├── 📄 package.json               # 项目依赖配置
-├── 📄 vite.config.ts             # Vite 配置
-├── 📄 tailwind.config.js         # Tailwind CSS 配置
-├── 📄 tsconfig.json              # TypeScript 配置
-├── 📄 .env.*                     # 环境变量配置
-└── 📄 README.md                  # 项目说明文档
+│       └── deploy.yml             # Auto deployment configuration
+├── 📁 public/                     # Static assets
+│   └── favicon.ico               # Website icon
+├── 📁 src/                       # Source code directory
+│   ├── 📁 types/                 # TypeScript type definitions
+│   │   └── openapi.d.ts          # OpenAPI related types
+│   ├── 📁 utils/                 # Utility functions
+│   │   ├── typescript-generator.ts # TypeScript code generator
+│   │   └── openapi-parser.ts     # OpenAPI parser
+│   ├── 📁 views/                 # View components
+│   │   ├── GenerateView.vue      # Generate view
+│   │   └── HomeView.vue          # Home view
+│   ├── 📁 styles/                # Style files
+│   │   └── main.css              # Main stylesheet
+│   ├── App.vue                   # Root component
+│   └── main.ts                   # Application entry
+├── 📁 template/                  # Build output directory
+├── 📄 package.json               # Project dependencies configuration
+├── 📄 vite.config.ts             # Vite configuration
+├── 📄 tailwind.config.js         # Tailwind CSS configuration
+├── 📄 tsconfig.json              # TypeScript configuration
+├── 📄 .env.*                     # Environment variables configuration
+└── 📄 README.md                  # Project documentation
 ```
 
-### 核心文件说明
+### Core File Descriptions
 
-#### 🎯 主要组件
-- **`GenerateView.vue`**：主界面组件，包含输入区域和输出预览
-- **`CodeEditor.vue`**：代码编辑器，支持语法高亮和格式化
-- **`FileTree.vue`**：文件树展示，按标签分组显示生成的文件
+#### 🎯 Main Components
+- **`GenerateView.vue`**: Main interface component with input area and output preview
+- **`CodeEditor.vue`**: Code editor with syntax highlighting and formatting
+- **`FileTree.vue`**: File tree display, showing generated files grouped by tags
 
-#### ⚙️ 核心工具
-- **`typescript-generator.ts`**：TypeScript 代码生成引擎
-  - `generateApiFiles()`: 生成 API 接口文件
-  - `schemaToTypeScript()`: 将 OpenAPI Schema 转换为 TypeScript 类型
-  - `generateFileStructure()`: 生成文件结构树
-- **`openapi-parser.ts`**：OpenAPI 文档解析器
+#### ⚙️ Core Tools
+- **`typescript-generator.ts`**: TypeScript code generation engine
+  - `generateApiFiles()`: Generate API interface files
+  - `schemaToTypeScript()`: Convert OpenAPI Schema to TypeScript types
+  - `generateFileStructure()`: Generate file structure tree
+- **`openapi-parser.ts`**: OpenAPI document parser
 
-#### 🔧 配置文件
-- **`vite.config.ts`**：构建配置，输出到 template 目录
-- **`tailwind.config.js`**：UI 样式配置
-- **`.env.production`**：生产环境变量配置
+#### 🔧 Configuration Files
+- **`vite.config.ts`**: Build configuration, outputs to template directory
+- **`tailwind.config.js`**: UI style configuration
+- **`.env.production`**: Production environment variables configuration
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-### 环境要求
+### Requirements
 - Node.js >= 20.0.0
-- pnpm >= 10.0.0 (推荐) 
+- pnpm >= 10.0.0 (recommended)
 
-### 安装依赖
+### Install Dependencies
 ```bash
-# 使用 pnpm (推荐)
+# Using pnpm (recommended)
 pnpm install
 
-# 或使用 npm
+# Or using npm
 npm install
 ```
 
-### 开发模式
+### Development Mode
 ```bash
-# 启动开发服务器
+# Start development server
 pnpm dev
 
-# 访问 http://localhost:5173
+# Visit http://localhost:5173
 ```
 
-### 构建部署
+### Build and Deploy
 ```bash
-# 构建生产版本
+# Build production version
 pnpm build
 
-# 预览构建结果
+# Preview build result
 pnpm preview
 ```
 
-### 使用方法
+### Usage
 
-1. **输入 OpenAPI 文档**
-   - 在左侧编辑器中粘贴或输入 OpenAPI JSON/YAML 文档
-   - 支持 OpenAPI 3.0+ 规范
+1. **Input OpenAPI Document**
+   - Paste or input OpenAPI JSON/YAML document in the left editor
+   - Supports OpenAPI 3.0+ specifications
 
-2. **配置生成选项**
-   - 选择是否包含注释
-   - 设置命名风格
-   - 配置文件分组方式
+2. **Configure Generation Options**
+   - Choose whether to include comments
+   - Set naming styles
+   - Configure file grouping methods
 
-3. **生成 TypeScript 代码**
-   - 点击"生成代码"按钮
-   - 在右侧预览生成的 TypeScript 代码
-   - 查看文件树结构
+3. **Generate TypeScript Code**
+   - Click the "Generate Code" button
+   - Preview generated TypeScript code on the right
+   - View file tree structure
 
-4. **导出代码**
-   - 复制单个文件内容
-   - 下载完整的代码包
+4. **Export Code**
+   - Copy individual file contents
+   - Download complete code package
 
-## 🌟 功能特色
+## 🌟 Features
 
-### 🎨 现代化界面
-- **响应式设计**：完美适配各种屏幕尺寸
-- **暗色主题**：护眼的暗色界面设计
-- **直观操作**：简洁明了的用户交互
+### 🎨 Modern Interface
+- **Responsive design**: Perfect adaptation to various screen sizes
+- **Dark theme**: Eye-friendly dark interface design
+- **Intuitive operation**: Simple and clear user interaction
 
-### ⚡ 高性能
-- **实时生成**：毫秒级的代码生成速度
-- **内存优化**：高效的内存使用和垃圾回收
-- **懒加载**：按需加载组件和资源
+### ⚡ High Performance
+- **Real-time generation**: Millisecond-level code generation speed
+- **Memory optimization**: Efficient memory usage and garbage collection
+- **Lazy loading**: Load components and resources on demand
 
-### 🔒 代码质量
-- **类型安全**：100% TypeScript 覆盖
-- **代码规范**：ESLint + Prettier 保障代码质量
+### 🔒 Code Quality
+- **Type safety**: 100% TypeScript coverage
+- **Code standards**: ESLint + Prettier ensure code quality
 
-### 🌐 部署友好
-- **静态部署**：支持 GitHub Pages、Vercel、Netlify 等平台
-- **CDN 优化**：资源压缩和缓存优化
-- **SEO 友好**：良好的搜索引擎优化
+### 🌐 Deployment Friendly
+- **Static deployment**: Supports GitHub Pages, Vercel, Netlify and other platforms
+- **CDN optimization**: Resource compression and cache optimization
+- **SEO friendly**: Good search engine optimization
 
-## 🚀 部署说明
+## 🚀 Deployment
 
-### GitHub Pages 自动部署
+### GitHub Pages Auto Deployment
 
-项目已配置 GitHub Actions 自动部署流程：
+The project has configured GitHub Actions auto deployment workflow:
 
-1. **推送代码**：向 `main` 分支推送代码
-2. **自动构建**：GitHub Actions 自动执行构建
-3. **部署上线**：构建完成后自动部署到 GitHub Pages
+1. **Push code**: Push code to `main` branch
+2. **Auto build**: GitHub Actions automatically executes build
+3. **Deploy online**: Automatically deploy to GitHub Pages after build completion
 
-### 手动部署
+### Manual Deployment
 
 ```bash
-# 1. 构建项目
+# 1. Build project
 pnpm build:prod
 pnpm build:dev
 pnpm build:test
 
-# 2. 部署 template 目录到静态服务器
-# 例如：上传到 Nginx、Apache 或 CDN
+# 2. Deploy template directory to static server
+# For example: upload to Nginx, Apache or CDN
 ```
 
-### 环境变量配置
+### Environment Variables Configuration
 
-生产环境需要配置以下环境变量：
+Production environment requires the following environment variables:
 
 ```bash
 # .env.production
 VITE_OUTDIR_PATH=template/
-VITE_APP_TITLE=OpenAPI to TypeScript 转换器
+VITE_APP_TITLE=OpenAPI to TypeScript Converter
 ```
 
-## 🤝 贡献指南
+## 🤝 Contributing
 
-我们欢迎所有形式的贡献！
+We welcome all forms of contributions!
 
-### 开发流程
+### Development Workflow
 
-1. **Fork 项目**
+1. **Fork the project**
    ```bash
    git clone https://github.com/your-username/vue3-Ts-Tailwind-template-Pro-private.git
    ```
 
-2. **创建功能分支**
+2. **Create feature branch**
    ```bash
    git checkout -b feature/your-feature-name
    ```
 
-3. **开发和测试**
+3. **Develop and test**
    ```bash
-   pnpm dev        # 启动开发服务器
-   pnpm test       # 运行测试
-   pnpm lint       # 代码检查
+   pnpm dev        # Start development server
+   pnpm test       # Run tests
+   pnpm lint       # Code check
    ```
 
-4. **提交代码**
+4. **Commit code**
    ```bash
    git add .
    git commit -m "feat: add your feature description"
    ```
 
-5. **推送并创建 PR**
+5. **Push and create PR**
    ```bash
    git push origin feature/your-feature-name
    ```
 
-### 代码规范
+### Code Standards
 
-- 遵循 ESLint 和 Prettier 配置
-- 使用 TypeScript 编写所有代码
-- 添加适当的注释和文档
-- 编写单元测试覆盖新功能
+- Follow ESLint and Prettier configuration
+- Write all code in TypeScript
+- Add appropriate comments and documentation
+- Write unit tests covering new features
 
-### 提交信息规范
+### Commit Message Standards
 
-使用 [Conventional Commits](https://www.conventionalcommits.org/) 规范：
+Use [Conventional Commits](https://www.conventionalcommits.org/) specification:
 
-- `feat`: 新功能
-- `fix`: 修复 bug
-- `docs`: 文档更新
-- `style`: 代码格式调整
-- `refactor`: 代码重构
-- `test`: 测试相关
-- `chore`: 构建或辅助工具变动
+- `feat`: New features
+- `fix`: Bug fixes
+- `docs`: Documentation updates
+- `style`: Code format adjustments
+- `refactor`: Code refactoring
+- `test`: Test related
+- `chore`: Build or auxiliary tool changes
 
-## 📄 许可证
+## 📄 License
 
-本项目采用 [MIT License](LICENSE) 开源协议。
+This project is licensed under the [MIT License](LICENSE).
 
-## 🙏 致谢
+## 🙏 Acknowledgments
 
-感谢以下开源项目的支持：
+Thanks to the following open source projects for their support:
 
-- [Vue.js](https://vuejs.org/) - 渐进式 JavaScript 框架
-- [TypeScript](https://www.typescriptlang.org/) - JavaScript 的超集
-- [Tailwind CSS](https://tailwindcss.com/) - 实用优先的 CSS 框架
-- [Vite](https://vitejs.dev/) - 下一代前端构建工具
+- [Vue.js](https://vuejs.org/) - Progressive JavaScript framework
+- [TypeScript](https://www.typescriptlang.org/) - Superset of JavaScript
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [Vite](https://vitejs.dev/) - Next generation frontend build tool
 
-## 📞 联系我们
+## 📞 Contact Us
 
-如果您有任何问题或建议，欢迎通过以下方式联系：
+If you have any questions or suggestions, please contact us through:
 
-- 📧 提交 [Issue](https://github.com/doweinide/font_openApi_to_ts/issues)
-- 💬 发起 [Discussion](https://github.com/doweinide/font_openApi_to_ts/discussions)
+- 📧 Submit [Issue](https://github.com/doweinide/font_openApi_to_ts/issues)
+- 💬 Start [Discussion](https://github.com/doweinide/font_openApi_to_ts/discussions)
 
 ---
 
-⭐ 如果这个项目对您有帮助，请给我们一个 Star！
+⭐ If this project helps you, please give us a Star!
+
+## 📚 Other Language Versions
+
+- [中文版本 (Chinese)](README.zh-cn.md)
+- [日本語版 (Japanese)](README.ja.md)
