@@ -305,9 +305,13 @@ class TypeScriptGenerator {
   ): string | null {
     const params: string[] = []
 
-    // 处理参数
+    // 只处理 query 和 path 参数，排除 header 参数
     if (operation.parameters) {
       operation.parameters.forEach(param => {
+        // 跳过 header 参数
+        if (param.in === 'header') {
+          return
+        }
         const paramType = this.parameterToTypeScript(param)
         const optional = param.required ? '' : '?'
         const comment = param.description ? ` // ${param.description}` : ''
@@ -317,8 +321,37 @@ class TypeScriptGenerator {
 
     // 处理请求体
     if (operation.requestBody) {
-      const bodyType = this.requestBodyToTypeScript(operation.requestBody)
-      params.push(`  body: ${bodyType};`)
+      const requestBody = operation.requestBody as any
+
+      // 尝试展开请求体属性（支持 JSON 和 form-urlencoded 格式）
+      const jsonSchema = requestBody.content?.['application/json']?.schema
+      const formSchema =
+        requestBody.content?.['application/x-www-form-urlencoded']?.schema
+      const schema = jsonSchema || formSchema
+
+      if (schema) {
+        // 如果是对象类型且有属性定义，展开属性
+        if (schema.type === 'object' && schema.properties) {
+          Object.entries(schema.properties).forEach(
+            ([propName, propSchema]: [string, any]) => {
+              const propType = this.schemaToTypeScript(propSchema)
+              const required = schema.required?.includes(propName)
+              const optional = required ? '' : '?'
+              const comment = propSchema.description
+                ? ` // ${propSchema.description}`
+                : ''
+              params.push(`  ${propName}${optional}: ${propType};${comment}`)
+            },
+          )
+        } else {
+          // 对于非对象类型或没有属性定义的，直接使用 schemaToTypeScript 生成类型
+          const bodyType = this.schemaToTypeScript(schema)
+          params.push(`  body: ${bodyType};`)
+        }
+      } else {
+        // 没有 schema 的情况，使用 any
+        params.push(`  body: any;`)
+      }
     }
 
     if (params.length === 0) {
@@ -454,7 +487,9 @@ class TypeScriptGenerator {
       // 生成按需导入语句
       if (usedTypes.size > 0) {
         const typesList = Array.from(usedTypes).sort().join(', ')
-        content.push(`import type { ${typesList} } from './types';`)
+        // 检查是否为中文tag生成的文件夹结构，如果是则调整导入路径
+        const importPath = this.isChinese(tag) ? '../types' : './types'
+        content.push(`import type { ${typesList} } from '${importPath}';`)
       }
     }
 
