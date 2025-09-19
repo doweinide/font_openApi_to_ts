@@ -26,11 +26,11 @@ export default {
     generate: 'Generate Code',
   },
   home: {
-    title: 'OpenAPI to TypeScript Converter',
+    title: 'OpenAPI Code Generator',
     subtitle:
-      'Quickly convert OpenAPI/Swagger documents to TypeScript type definitions',
+      'Quickly convert OpenAPI/Swagger documents to TypeScript or JavaScript code',
     description:
-      'Support multiple input formats and generate high-quality TypeScript code',
+      'Support multiple input formats and generate high-quality TypeScript and JavaScript code',
     getStarted: 'Get Started',
     features: {
       title: 'Core Features',
@@ -39,8 +39,8 @@ export default {
         desc: 'Support OpenAPI 3.0/2.0 and Swagger formats',
       },
       generate: {
-        title: 'TypeScript Generation',
-        desc: 'Generate type-safe TypeScript interfaces and types',
+        title: 'Code Generation',
+        desc: 'Generate type-safe TypeScript or JavaScript code',
       },
       download: {
         title: 'File Download',
@@ -52,7 +52,7 @@ export default {
     title: 'Code Generation',
     inputLabel: 'Input OpenAPI Document',
     inputPlaceholder: 'Please enter OpenAPI/Swagger JSON or YAML content...',
-    generateBtn: 'Generate TypeScript',
+    generateBtn: 'Generate Code',
     downloadBtn: 'Download Code',
     copyBtn: 'Copy Code',
     clearBtn: 'Clear',
@@ -99,6 +99,11 @@ export default {
     },
     config: {
       title: 'Generation Configuration',
+      codeLanguage: 'Code Language',
+      typescript: 'TypeScript',
+      javascript: 'JavaScript',
+      jsGenerationTip: 'JavaScript Code Generation Tips',
+      jsGenerationDesc: 'JavaScript mode will generate standard JS code with JSDoc comments for type information',
       selectTags: 'Select Tags',
       selectTagsPlaceholder: 'Select tags to generate (empty means all)',
       importTemplate: 'Import Statement Template',

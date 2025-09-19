@@ -88,6 +88,8 @@ export interface TagObject {
 
 // 生成器配置
 export interface GeneratorConfig {
+  // 代码语言
+  codeLanguage: 'typescript' | 'javascript' // 生成代码语言
   excludeTags: string[] // 要排除的 tags
   exportStyle: 'named' | 'default' // 导出方式
 
@@ -163,6 +165,7 @@ export interface DownloadOptions {
 
 // 默认配置
 export const DEFAULT_CONFIG: GeneratorConfig = {
+  codeLanguage: 'typescript',
   excludeTags: [],
   exportStyle: 'named',
   functionNaming: 'camelCase',

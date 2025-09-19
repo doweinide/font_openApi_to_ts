@@ -1,5 +1,6 @@
-// TypeScript 代码生成器
+// TypeScript/JavaScript 代码生成器
 import { filterByTags } from './openapi-parser'
+import { generateJavaScriptCode } from './javascript-generator'
 
 import type {
   FileTreeNode,
@@ -12,6 +13,21 @@ import type {
   ParameterObject,
   SchemaObject,
 } from '@/types/openapi'
+
+/**
+ * 生成代码（根据配置选择 TypeScript 或 JavaScript）
+ * @param options 生成选项
+ * @returns 生成结果
+ */
+export function generateCode(options: GenerateOptions): GenerateResult {
+  const { config } = options
+  
+  if (config.codeLanguage === 'javascript') {
+    return generateJavaScriptCode(options)
+  }
+  
+  return generateTypeScriptCode(options)
+}
 
 /**
  * 生成 TypeScript 代码

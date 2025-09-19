@@ -26,9 +26,9 @@ export default {
     generate: 'コード生成',
   },
   home: {
-    title: 'OpenAPI から TypeScript への変換ツール',
-    subtitle: 'OpenAPI/Swagger ドキュメントを TypeScript 型定義に素早く変換',
-    description: '複数の入力形式をサポートし、高品質な TypeScript コードを生成',
+    title: 'OpenAPI コードジェネレーター',
+    subtitle: 'OpenAPI/Swagger ドキュメントを TypeScript または JavaScript コードに素早く変換',
+    description: '複数の入力形式をサポートし、高品質な TypeScript と JavaScript コードを生成',
     getStarted: '始める',
     features: {
       title: 'コア機能',
@@ -37,8 +37,8 @@ export default {
         desc: 'OpenAPI 3.0/2.0 と Swagger 形式をサポート',
       },
       generate: {
-        title: 'TypeScript 生成',
-        desc: '型安全な TypeScript インターフェースと型を生成',
+        title: 'コード生成',
+        desc: '型安全な TypeScript または JavaScript コードを生成',
       },
       download: {
         title: 'ファイルダウンロード',
@@ -51,7 +51,7 @@ export default {
     inputLabel: 'OpenAPI ドキュメントを入力',
     inputPlaceholder:
       'OpenAPI/Swagger JSON または YAML の内容を入力してください...',
-    generateBtn: 'TypeScript を生成',
+    generateBtn: 'コードを生成',
     downloadBtn: 'コードをダウンロード',
     copyBtn: 'コードをコピー',
     clearBtn: 'クリア',
@@ -98,6 +98,11 @@ export default {
     },
     config: {
       title: '生成設定',
+      codeLanguage: 'コード言語',
+      typescript: 'TypeScript',
+      javascript: 'JavaScript',
+      jsGenerationTip: 'JavaScript コード生成のヒント',
+      jsGenerationDesc: 'JavaScript モードでは、型情報のための JSDoc コメント付きの標準 JS コードを生成します',
       selectTags: 'タグを選択',
       selectTagsPlaceholder: '生成するタグを選択（空の場合はすべて）',
       importTemplate: 'インポート文テンプレート',
