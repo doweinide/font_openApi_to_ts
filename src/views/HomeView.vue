@@ -356,6 +356,14 @@
             </template>
 
             <el-form :model="config" label-position="top" class="space-y-4">
+              <!-- 代码语言选择 -->
+              <el-form-item :label="$t('generate.config.codeLanguage')">
+                <el-radio-group v-model="config.codeLanguage" class="w-full">
+                  <el-radio value="typescript">{{ $t('generate.config.typescript') }}</el-radio>
+                  <el-radio value="javascript">{{ $t('generate.config.javascript') }}</el-radio>
+                </el-radio-group>
+              </el-form-item>
+
               <!-- Tags 配置 -->
               <el-form-item :label="$t('generate.config.selectTags')">
                 <el-select
@@ -375,7 +383,10 @@
               </el-form-item>
 
               <!-- 导入语句配置 -->
-              <el-form-item :label="$t('generate.config.importTemplate')">
+              <el-form-item 
+                v-show="config.codeLanguage === 'typescript'"
+                :label="$t('generate.config.importTemplate')"
+              >
                 <el-input
                   v-model="config.importTemplate"
                   type="textarea"
@@ -384,12 +395,18 @@
                 />
               </el-form-item>
 
-              <!-- 请求工具路径 -->
-              <el-form-item :label="$t('generate.config.requestUtilPath')">
-                <el-input
-                  v-model="config.requestUtilPath"
-                  placeholder="../utils/request"
-                />
+              <!-- JS代码生成模式提示 -->
+              <el-form-item v-show="config.codeLanguage === 'javascript'">
+                <el-alert
+                  :title="$t('generate.config.jsGenerationTip')"
+                  type="info"
+                  :closable="false"
+                  show-icon
+                >
+                  <template #default>
+                    <p>{{ $t('generate.config.jsGenerationDesc') }}</p>
+                  </template>
+                </el-alert>
               </el-form-item>
 
               <!-- 命名规则 -->
@@ -400,7 +417,11 @@
                 </el-radio-group>
               </el-form-item>
 
-              <el-form-item :label="$t('generate.config.typeNaming')">
+              <!-- 类型命名规则 -->
+              <el-form-item 
+                v-show="config.codeLanguage === 'typescript'"
+                :label="$t('generate.config.typeNaming')"
+              >
                 <el-radio-group v-model="config.typeNaming" class="w-full">
                   <el-radio value="PascalCase">PascalCase</el-radio>
                   <el-radio value="camelCase">camelCase</el-radio>
@@ -416,7 +437,10 @@
               </el-divider>
 
               <el-form-item>
-                <el-checkbox v-model="config.separateTypes">{{
+                <el-checkbox 
+                  v-show="config.codeLanguage === 'typescript'"
+                  v-model="config.separateTypes"
+                >{{
                   $t('generate.config.separateTypes')
                 }}</el-checkbox>
               </el-form-item>
@@ -479,6 +503,9 @@
               {{ $t('generate.config.clearCache') }}
             </el-button>
 
+
+
+            
             <!-- 生成按钮 -->
             <el-button
               type="primary"
@@ -533,7 +560,7 @@
     UploadFile,
   } from '@/types/openapi'
   import { parseOpenAPI } from '@/utils/openapi-parser'
-  import { generateTypeScriptCode } from '@/utils/typescript-generator'
+  import { generateCode } from '@/utils/typescript-generator'
 
   // 设置 Monaco Editor 环境
   self.MonacoEnvironment = {
@@ -574,6 +601,7 @@
 
   // 配置对象
   const config = reactive<GeneratorConfig>({
+    codeLanguage: 'javascript',
     excludeTags: [],
     exportStyle: 'named',
     functionNaming: 'camelCase',
@@ -846,6 +874,101 @@ export interface PaginatedResponse<T> {
     return Object.keys(parsedDoc.value.paths).length
   }
 
+  const testJavaScriptGenerator = () => {
+    console.log('🔍 [调试] 开始测试JavaScript生成器')
+    console.log('🔍 [调试] 当前语言模式:', config.codeLanguage)
+    
+    // 创建测试文档
+    const testDoc = {
+      openapi: '3.0.0',
+      info: { title: 'Test API', version: '1.0.0' },
+      paths: {
+        '/test': {
+          get: {
+            operationId: 'getTest',
+            summary: '测试接口',
+            tags: ['test'],
+            responses: {
+              '200': {
+                description: '成功响应'
+              }
+            }
+          }
+        },
+        '/users/{id}': {
+          get: {
+            operationId: 'getUserById',
+            summary: '根据ID获取用户',
+            tags: ['users'],
+            parameters: [{
+              name: 'id',
+              in: 'path',
+              required: true,
+              schema: { type: 'string' }
+            }],
+            responses: {
+              '200': {
+                description: '用户信息'
+              }
+            }
+          },
+          post: {
+            operationId: 'updateUser',
+            summary: '更新用户',
+            tags: ['users'],
+            requestBody: {
+              content: {
+                'application/json': {
+                  schema: {
+                    type: 'object',
+                    properties: {
+                      name: { type: 'string' },
+                      email: { type: 'string' }
+                    }
+                  }
+                }
+              }
+            },
+            responses: {
+              '200': {
+                description: '更新成功'
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    console.log('🔍 [调试] 测试文档:', testDoc)
+    console.log('🔍 [调试] 文档路径数量:', Object.keys(testDoc.paths).length)
+    console.log('🔍 [调试] 当前配置:', {
+      codeLanguage: config.codeLanguage,
+      outputTags: config.outputTags,
+      generateUtils: config.generateUtils,
+      generateIndex: config.generateIndex
+    })
+    
+    try {
+      console.log('🔍 [调试] 调用generateCode函数...')
+      const result = generateCode({ config, openApiDoc: testDoc })
+      console.log('🔍 [调试] 生成结果:', result)
+      console.log('🔍 [调试] 生成的文件数量:', result.files?.length || 0)
+      
+      if (result.files && result.files.length > 0) {
+        result.files.forEach((file, index) => {
+          console.log(`🔍 [调试] 文件${index + 1}: ${file.path} (${file.content?.length || 0} 字符)`)
+        })
+      } else {
+        console.warn('🔍 [调试] 警告: 没有生成任何文件!')
+      }
+      ElMessage.success('测试完成，请查看控制台日志')
+    } catch (error) {
+      console.error('🔍 [调试] 生成失败:', error)
+      console.error('🔍 [调试] 错误堆栈:', error.stack)
+      ElMessage.error('测试失败: ' + error.message)
+    }
+  }
+
   const handleGenerate = async () => {
     if (!parsedDoc.value) {
       ElMessage.warning('请先上传 OpenAPI 文档')
@@ -857,7 +980,7 @@ export interface PaginatedResponse<T> {
       // 保存配置到localStorage
       saveConfigToCache()
 
-      const result = generateTypeScriptCode({
+      const result = generateCode({
         config,
         openApiDoc: parsedDoc.value,
       })
@@ -930,6 +1053,7 @@ export interface PaginatedResponse<T> {
 
       // 重置所有数据
       Object.assign(config, {
+        codeLanguage: 'javascript',
         excludeTags: [],
         exportStyle: 'named',
         functionNaming: 'camelCase',

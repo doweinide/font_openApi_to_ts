@@ -26,9 +26,9 @@ export default {
     generate: '生成代码',
   },
   home: {
-    title: 'OpenAPI 转 TypeScript 工具',
-    subtitle: '快速将 OpenAPI/Swagger 文档转换为 TypeScript 类型定义',
-    description: '支持多种输入格式，生成高质量的 TypeScript 代码',
+    title: 'OpenAPI 代码生成器',
+    subtitle: '快速将 OpenAPI/Swagger 文档转换为 TypeScript 或 JavaScript 代码',
+    description: '支持多种输入格式，生成高质量的 TypeScript 和 JavaScript 代码',
     getStarted: '开始使用',
     features: {
       title: '核心功能',
@@ -37,8 +37,8 @@ export default {
         desc: '支持 OpenAPI 3.0/2.0 和 Swagger 格式',
       },
       generate: {
-        title: 'TypeScript 生成',
-        desc: '生成类型安全的 TypeScript 接口和类型',
+        title: '代码生成',
+        desc: '生成类型安全的 TypeScript 或 JavaScript 代码',
       },
       download: {
         title: '文件下载',
@@ -50,7 +50,7 @@ export default {
     title: '代码生成',
     inputLabel: '输入 OpenAPI 文档',
     inputPlaceholder: '请输入 OpenAPI/Swagger JSON 或 YAML 内容...',
-    generateBtn: '生成 TypeScript',
+    generateBtn: '生成代码',
     downloadBtn: '下载代码',
     copyBtn: '复制代码',
     clearBtn: '清空',
@@ -97,6 +97,11 @@ export default {
     },
     config: {
       title: '生成配置',
+      codeLanguage: '代码语言',
+      typescript: 'TypeScript',
+      javascript: 'JavaScript',
+      jsGenerationTip: 'JavaScript 代码生成提示',
+      jsGenerationDesc: 'JavaScript 模式将生成标准的 JS 代码，使用 JSDoc 注释提供类型信息',
       selectTags: '选择 Tags',
       selectTagsPlaceholder: '选择要生成的 tags（留空表示全部）',
       importTemplate: '导入语句模板',

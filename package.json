@@ -76,7 +76,9 @@
     "vue-eslint-parser": "^10.2.0",
     "vue-tsc": "^2.2.2"
   },
-  "name": "vue3_tailwind",
+  "name": "openapi-to-code-generator",
+  "description": "OpenAPI to TypeScript/JavaScript Code Generator - Convert OpenAPI/Swagger documents to TypeScript or JavaScript code",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build:dev": "vite build --mode development",
