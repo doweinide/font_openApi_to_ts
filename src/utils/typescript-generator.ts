@@ -10,6 +10,7 @@ import type {
   OpenAPIDocument,
   OperationObject,
   ParameterObject,
+  RequestBodyObject,
   SchemaObject,
 } from '@/types/openapi'
 
@@ -113,15 +114,8 @@ class TypeScriptGenerator {
       utils.push('// HTTP 请求工具')
       utils.push('// 请根据项目需要修改此文件\n')
     }
-
-    // 基础请求接口
-    utils.push('export interface RequestConfig {')
-    utils.push('  url: string;')
-    utils.push('  method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";')
-    utils.push('  params?: Record<string, any>;')
-    utils.push('  data?: any;')
-    utils.push('  headers?: Record<string, string>;')
-    utils.push('}\n')
+    utils.push("import type { AxiosRequestConfig } from 'axios';")
+    utils.push('')
 
     // 响应接口
     utils.push('export interface ApiResponse<T = any> {')
@@ -133,7 +127,7 @@ class TypeScriptGenerator {
     // 请求函数模板
     if (this.config.useAsync) {
       utils.push(
-        'export async function request<T = any>(config: RequestConfig): Promise<T> {',
+        'export async function request<T = any>(config: AxiosRequestConfig): Promise<T> {',
       )
       utils.push('  // TODO: 实现具体的请求逻辑')
       utils.push('  // 这里需要根据项目使用的 HTTP 客户端进行实现')
@@ -141,7 +135,7 @@ class TypeScriptGenerator {
       utils.push('}')
     } else {
       utils.push(
-        'export function request<T = any>(config: RequestConfig): Promise<T> {',
+        'export function request<T = any>(config: AxiosRequestConfig): Promise<T> {',
       )
       utils.push('  // TODO: 实现具体的请求逻辑')
       utils.push('  return Promise.reject(new Error("请实现 request 函数"));')
@@ -304,53 +298,72 @@ class TypeScriptGenerator {
     operation: OperationObject,
   ): string | null {
     const params: string[] = []
+    const queryFields: string[] = []
+    const pathFields: string[] = []
+    let hasRequiredQuery = false
+    let hasRequiredPath = false
 
-    // 只处理 query 和 path 参数，排除 header 参数
+    // 只处理 query 和 path 参数，排除 header/cookie 参数
     if (operation.parameters) {
       operation.parameters.forEach(param => {
-        // 跳过 header 参数
-        if (param.in === 'header') {
+        if (param.in !== 'query' && param.in !== 'path') {
           return
         }
         const paramType = this.parameterToTypeScript(param)
         const optional = param.required ? '' : '?'
         const comment = param.description ? ` // ${param.description}` : ''
-        params.push(`  ${param.name}${optional}: ${paramType};${comment}`)
+        const field = `    ${param.name}${optional}: ${paramType};${comment}`
+
+        if (param.in === 'query') {
+          queryFields.push(field)
+          if (param.required) {
+            hasRequiredQuery = true
+          }
+        } else {
+          pathFields.push(field)
+          if (param.required) {
+            hasRequiredPath = true
+          }
+        }
       })
     }
 
     // 处理请求体
     if (operation.requestBody) {
-      const requestBody = operation.requestBody as any
+      const requestBody = operation.requestBody as RequestBodyObject
 
-      // 尝试展开请求体属性（支持 JSON 和 form-urlencoded 格式）
+      // 统一收敛为 body 字段（支持 JSON 和 form-urlencoded）
       const jsonSchema = requestBody.content?.['application/json']?.schema
       const formSchema =
         requestBody.content?.['application/x-www-form-urlencoded']?.schema
       const schema = jsonSchema || formSchema
 
       if (schema) {
-        // 如果是对象类型且有属性定义，展开属性
-        if (schema.type === 'object' && schema.properties) {
-          Object.entries(schema.properties).forEach(
-            ([propName, propSchema]: [string, any]) => {
-              const propType = this.schemaToTypeScript(propSchema)
-              const required = schema.required?.includes(propName)
-              const optional = required ? '' : '?'
-              const comment = propSchema.description
-                ? ` // ${propSchema.description}`
-                : ''
-              params.push(`  ${propName}${optional}: ${propType};${comment}`)
-            },
-          )
-        } else {
-          // 对于非对象类型或没有属性定义的，直接使用 schemaToTypeScript 生成类型
-          const bodyType = this.schemaToTypeScript(schema)
-          params.push(`  body: ${bodyType};`)
-        }
+        const bodyType = this.schemaToTypeScript(schema)
+        const optional = requestBody.required ? '' : '?'
+        params.push(`  body${optional}: ${bodyType};`)
       } else {
         // 没有 schema 的情况，使用 any
-        params.push(`  body: any;`)
+        const optional = requestBody.required ? '' : '?'
+        params.push(`  body${optional}: any;`)
+      }
+    }
+
+    if (queryFields.length > 0) {
+      const optional = hasRequiredQuery ? '' : '?'
+      params.push(`  query${optional}: {\n${queryFields.join('\n')}\n  };`)
+    }
+
+    if (pathFields.length > 0) {
+      const optional = hasRequiredPath ? '' : '?'
+      params.push(`  params${optional}: {\n${pathFields.join('\n')}\n  };`)
+    }
+
+    if (operation.requestBody) {
+      const bodyIndex = params.findIndex(line => line.startsWith('  body'))
+      if (bodyIndex >= 0) {
+        const [bodyLine] = params.splice(bodyIndex, 1)
+        params.unshift(bodyLine)
       }
     }
 
@@ -466,6 +479,7 @@ class TypeScriptGenerator {
 
     // 添加导入语句
     content.push(this.config.importTemplate)
+    content.push("import type { AxiosRequestConfig } from 'axios';")
 
     // 收集该文件中使用的类型
     if (this.config.separateTypes) {
@@ -544,10 +558,13 @@ class TypeScriptGenerator {
     const functionName = this.generateFunctionNameFromPath(path, method)
 
     // 构建参数
-    const hasParams = operation.parameters?.length || operation.requestBody
+    const hasParams = Boolean(
+      operation.parameters?.length || operation.requestBody,
+    )
+    const configType = 'Partial<AxiosRequestConfig>'
     const paramType = hasParams
-      ? `params: ${this.formatTypeName(functionName + 'Request')}`
-      : ''
+      ? `params: ${this.formatTypeName(functionName + 'Request')}, config?: ${configType}`
+      : `config?: ${configType}`
 
     // 构建返回类型
     const returnType = `Promise<${this.formatTypeName(functionName + 'Response')}>`
@@ -572,11 +589,12 @@ class TypeScriptGenerator {
     lines.push(signature)
 
     // 构建请求配置
-    const requestConfig = this.buildRequestConfig(path, method, operation)
+    const requestConfig = this.buildRequestConfig(path, operation)
     lines.push(
       `  const response = await request<${this.formatTypeName(functionName + 'Response')}>({`,
     )
-    lines.push(`    url: '${path}',`)
+    lines.push('    ...config,')
+    lines.push(`    url: ${requestConfig.url},`)
     lines.push(`    method: '${method.toUpperCase()}',`)
 
     if (requestConfig.params) {
@@ -662,25 +680,58 @@ class TypeScriptGenerator {
    */
   private buildRequestConfig(
     path: string,
-    method: string,
     operation: OperationObject,
-  ): { params?: string; data?: string } {
-    const config: { params?: string; data?: string } = {}
+  ): { data?: string; params?: string; url: string } {
+    const config: { data?: string; params?: string; url: string } = {
+      url: `'${path}'`,
+    }
 
-    // 处理查询参数和路径参数
+    // 处理查询参数
     const queryParams = operation.parameters?.filter(p => p.in === 'query')
     const pathParams = operation.parameters?.filter(p => p.in === 'path')
 
     if (queryParams?.length) {
-      config.params = 'params'
+      config.params = 'params.query'
+    }
+
+    if (pathParams?.length) {
+      config.url = this.buildPathUrl(path, pathParams)
     }
 
     // 处理请求体
-    if (operation.requestBody && ['post', 'put', 'patch'].includes(method)) {
+    if (operation.requestBody) {
       config.data = 'params.body'
     }
 
     return config
+  }
+
+  /**
+   * 生成带路径参数的 URL 模板
+   */
+  private buildPathUrl(path: string, pathParams: ParameterObject[]): string {
+    let template = path
+
+    pathParams.forEach(param => {
+      const safeName = param.name.replace(/\\/g, '\\\\').replace(/'/g, "\\'")
+      const placeholder = new RegExp(
+        `\\{${this.escapeRegExp(param.name)}\\}`,
+        'g',
+      )
+      template = template.replace(
+        placeholder,
+        `\${encodeURIComponent(String(params.params['${safeName}']))}`,
+      )
+    })
+
+    return `\`${template}\``
+  }
+
+  /**
+   * 转义正则特殊字符
+   */
+  private escapeRegExp(text: string): string {
+    return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   }
 
   /**

@@ -54,12 +54,13 @@
   import { ref } from 'vue'
   import { useI18n } from 'vue-i18n'
 
+  import type { Locale } from '@/locales'
   import { getCurrentLocale, LOCALE_OPTIONS, setLocale } from '@/locales'
 
   const { t } = useI18n()
   const currentLocale = ref(getCurrentLocale())
 
-  const handleLocaleChange = (locale: string) => {
+  const handleLocaleChange = (locale: Locale) => {
     setLocale(locale)
     currentLocale.value = locale
     const selectedOption = LOCALE_OPTIONS.find(opt => opt.value === locale)

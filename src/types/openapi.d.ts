@@ -77,6 +77,7 @@ export interface SchemaObject {
   oneOf?: SchemaObject[]
   properties?: Record<string, SchemaObject>
   required?: string[]
+  title?: string
   type?: string
 }
 

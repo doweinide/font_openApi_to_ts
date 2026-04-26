@@ -16,6 +16,9 @@ import regexp from 'eslint-plugin-regexp'
 import vitest from 'eslint-plugin-vitest'
 
 export default [
+  {
+    ignores: ['template/**', 'dist/**', 'coverage/**'],
+  },
   js.configs.recommended,
   
   // TypeScript文件配置（带类型检查）

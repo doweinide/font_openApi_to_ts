@@ -19,10 +19,7 @@
         "summary": "查询宠物详情",
         "deprecated": false,
         "description": "",
-        "tags": [
-          "示例项目",
-          "宠物"
-        ],
+        "tags": ["示例项目", "宠物"],
         "parameters": [
           {
             "name": "petId",
@@ -54,18 +51,13 @@
                       "description": "宠物信息"
                     }
                   },
-                  "required": [
-                    "code",
-                    "data"
-                  ]
+                  "required": ["code", "data"]
                 },
                 "example": {
                   "code": 0,
                   "data": {
                     "name": "Hello Kity",
-                    "photoUrls": [
-                      "http://dummyimage.com/400x400"
-                    ],
+                    "photoUrls": ["http://dummyimage.com/400x400"],
                     "id": 3,
                     "category": {
                       "id": 71,
@@ -91,10 +83,7 @@
         "summary": "删除宠物信息",
         "deprecated": false,
         "description": "",
-        "tags": [
-          "示例项目",
-          "宠物"
-        ],
+        "tags": ["示例项目", "宠物"],
         "parameters": [
           {
             "name": "petId",
@@ -128,9 +117,7 @@
                       "maximum": 0
                     }
                   },
-                  "required": [
-                    "code"
-                  ]
+                  "required": ["code"]
                 },
                 "example": {
                   "code": 0
@@ -148,10 +135,7 @@
         "summary": "修改宠物信息",
         "deprecated": false,
         "description": "",
-        "tags": [
-          "示例项目",
-          "宠物"
-        ],
+        "tags": ["示例项目", "宠物"],
         "parameters": [],
         "requestBody": {
           "content": {
@@ -178,18 +162,13 @@
                       "$ref": "#/components/schemas/Pet"
                     }
                   },
-                  "required": [
-                    "code",
-                    "data"
-                  ]
+                  "required": ["code", "data"]
                 },
                 "example": {
                   "code": 0,
                   "data": {
                     "name": "Hello Kity",
-                    "photoUrls": [
-                      "http://dummyimage.com/400x400"
-                    ],
+                    "photoUrls": ["http://dummyimage.com/400x400"],
                     "id": 3,
                     "category": {
                       "id": 71,
@@ -239,9 +218,7 @@
         "summary": "新建宠物信息",
         "deprecated": false,
         "description": "",
-        "tags": [
-          "宠物"
-        ],
+        "tags": ["宠物"],
         "parameters": [],
         "requestBody": {
           "content": {
@@ -260,10 +237,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "name",
-                  "status"
-                ]
+                "required": ["name", "status"]
               }
             }
           }
@@ -285,18 +259,13 @@
                       "$ref": "#/components/schemas/Pet"
                     }
                   },
-                  "required": [
-                    "code",
-                    "data"
-                  ]
+                  "required": ["code", "data"]
                 },
                 "example": {
                   "code": 0,
                   "data": {
                     "name": "Hello Kity",
-                    "photoUrls": [
-                      "http://dummyimage.com/400x400"
-                    ],
+                    "photoUrls": ["http://dummyimage.com/400x400"],
                     "id": 3,
                     "category": {
                       "id": 71,
@@ -324,10 +293,7 @@
         "summary": "根据状态查找宠物列表",
         "deprecated": false,
         "description": "",
-        "tags": [
-          "示例项目",
-          "宠物"
-        ],
+        "tags": ["示例项目", "宠物"],
         "parameters": [
           {
             "name": "status",
@@ -355,9 +321,7 @@
                   "data": [
                     {
                       "name": "Hello Kity",
-                      "photoUrls": [
-                        "http://dummyimage.com/400x400"
-                      ],
+                      "photoUrls": ["http://dummyimage.com/400x400"],
                       "id": 3,
                       "category": {
                         "id": 71,
@@ -373,9 +337,7 @@
                     },
                     {
                       "name": "White Dog",
-                      "photoUrls": [
-                        "http://dummyimage.com/400x400"
-                      ],
+                      "photoUrls": ["http://dummyimage.com/400x400"],
                       "id": 3,
                       "category": {
                         "id": 71,
@@ -406,9 +368,7 @@
                       "type": "integer"
                     }
                   },
-                  "required": [
-                    "code"
-                  ]
+                  "required": ["code"]
                 }
               }
             },
@@ -422,14 +382,7 @@
   "components": {
     "schemas": {
       "Pet": {
-        "required": [
-          "name",
-          "photoUrls",
-          "id",
-          "category",
-          "tags",
-          "status"
-        ],
+        "required": ["name", "photoUrls", "id", "category", "tags", "status"],
         "type": "object",
         "properties": {
           "id": {
@@ -464,11 +417,7 @@
           "status": {
             "type": "string",
             "description": "宠物销售状态",
-            "enum": [
-              "available",
-              "pending",
-              "sold"
-            ]
+            "enum": ["available", "pending", "sold"]
           }
         }
       },

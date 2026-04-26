@@ -24,12 +24,10 @@
             </h1>
           </div>
 
-          <!-- 语言切换器 -->
           <div class="flex items-center space-x-4">
-            <LanguageSwitcher class="w-32" size="small" />
-          </div>
+            <!-- 语言切换器 -->
+            <LanguageSwitcher class="w-[60px]" size="small" />
 
-          <div class="flex items-center space-x-4">
             <!-- 下载按钮 -->
             <el-button
               type="primary"

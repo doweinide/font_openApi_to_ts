@@ -14,7 +14,9 @@ export const LOCALE_OPTIONS = [
   { label: '简体中文', value: 'zh-cn' },
   { label: 'English', value: 'en' },
   { label: '日本語', value: 'ja' },
-]
+] as const
+
+export type Locale = (typeof LOCALE_OPTIONS)[number]['value']
 
 // Element Plus 语言包映射
 export const elementPlusLocaleMap = {
@@ -24,13 +26,13 @@ export const elementPlusLocaleMap = {
 }
 
 // 获取默认语言
-function getDefaultLocale() {
+function getDefaultLocale(): Locale {
   const savedLocale = localStorage.getItem('locale')
   if (
     savedLocale &&
     LOCALE_OPTIONS.some(option => option.value === savedLocale)
   ) {
-    return savedLocale
+    return savedLocale as Locale
   }
 
   // 根据浏览器语言自动选择
@@ -58,15 +60,15 @@ const i18n = createI18n({
 export default i18n
 
 // 切换语言的工具函数
-export function setLocale(locale: string) {
-  i18n.global.locale.value = locale as any
+export function setLocale(locale: Locale) {
+  i18n.global.locale.value = locale
   localStorage.setItem('locale', locale)
   document.documentElement.lang = locale
 }
 
 // 获取当前语言
-export function getCurrentLocale() {
-  return i18n.global.locale.value
+export function getCurrentLocale(): Locale {
+  return i18n.global.locale.value as Locale
 }
 
 // 获取当前 Element Plus 语言包
